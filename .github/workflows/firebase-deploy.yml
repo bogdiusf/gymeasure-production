@@ -18,5 +18,6 @@ jobs:
     - name: Test the code
       run: npm test
     - name: Deploy to Firebase
+      uses: mohammed-atif/firebase-publish-react@v1.0
       with:
         firebase-token: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GYMEASURE_PRODUCTION_6DCB6 }}

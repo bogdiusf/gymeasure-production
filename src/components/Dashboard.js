@@ -105,7 +105,7 @@ export default function Dashboard() {
     // function that returns a formatted date 'dd/mm/yyyy' and time 'hh:mm:ss'
     const getCurrentDateAndTime = () => {
         const completeDate = new Date()
-        const day = completeDate.getDate() < 10 ? '0' + completeDate.getDay() : completeDate.getDay()
+        const day = completeDate.getDate() < 10 ? '0' + completeDate.getDate() : completeDate.getDate()
         let month = completeDate.getMonth() + 1
         if (month < 10) {
             month = '0' + month
@@ -261,7 +261,7 @@ export default function Dashboard() {
             .delete()
         try {
             setShowDeleteMeasurementConfirmationModal(false)
-            setError('Your measurements has been successfully deleted!')
+            setError('Your measurement has been successfully deleted!')
             handleShowConfirmationModal()
         }
         catch (e) {

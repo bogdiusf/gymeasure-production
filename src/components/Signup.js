@@ -13,8 +13,15 @@ export default function Signup() {
     const passwordConfirmationRef = useRef()
     const { signup } = useAuth()
     const [error, setError] = useState(null)
+    const [msg, setMsg] = useState(null)
     const [loading, setLoading] = useState(false)
     const history = useHistory()
+
+    function delay(time) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, time)
+        });
+    }
 
     const handleSignUp = async (e) => {
         e.preventDefault()
@@ -23,19 +30,16 @@ export default function Signup() {
             return setError('Passwords do not match!')
         }
         try {
-            setError('');
+            setMsg('An email with the verification link has been sent to your inbox!');
             setLoading(true);
-            // const { user } = await signup(emailRef.current.value, passwordRef.current.value);
             await signup(emailRef.current.value, passwordRef.current.value);
-            // console.log(user)
-            // await createUserDocument(user)
-            history.push('/login')
         } catch (e) {
             setError(`Failed to create an account! ${e}`)
         }
 
         setLoading(false)
-
+        delay(7500)
+        history.push('/login')
     }
 
     return (
@@ -46,6 +50,7 @@ export default function Signup() {
                         <Card.Body>
                             <h2 className="text-center mb-4">Sign up</h2>
                             {error && <Alert variant="danger">{error}</Alert>}
+                            {msg && <Alert variant="success">{msg}</Alert>}
                             <Form onSubmit={handleSignUp}>
                                 <Form.Group id="email" className="mt-2">
                                     <Form.Label>Email</Form.Label>

@@ -27,7 +27,7 @@ export default function Login() {
                 setError('Please verify your email!')
             }
         } catch (e) {
-            setError(e.code === 'auth/user-not-found' ? 'User doest not exist or wrong email! Sign up or check email credential!' : e.code === 'auth/wrong-password' ? 'Invalid password!' : 'Failed to sign in!')
+            setError(e.code === 'auth/user-not-found' ? 'User does not exist or wrong email! Sign up or check email credential!' : e.code === 'auth/wrong-password' ? 'Invalid password!' : 'Failed to sign in!')
         }
         setLoading(false);
     }

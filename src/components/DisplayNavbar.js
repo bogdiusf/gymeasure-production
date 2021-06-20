@@ -13,7 +13,7 @@ export default function DisplayNavbar(props) {
                         <span id="navbarBrand-name">
                             <Navbar.Brand style={{ fontWeight: '500', color: 'rgba(255,255,255,0.75)' }}>
                                 {/* <img src={logo} style={{ width: '30px', height: '30px' }}></img> */}
-                                <span>{item.firstName} testing CI/CD {item.lastName}</span>
+                                <span>{item.firstName} {item.lastName}</span>
                             </Navbar.Brand></span><br />
                         <span id="navbarBrand-email"><Navbar.Brand style={{ fontWeight: '400', color: 'rgba(255,255,255,0.75)' }}>{props.currentUser.email}</Navbar.Brand></span>
                     </div>

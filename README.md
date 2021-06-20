@@ -1,5 +1,7 @@
 # APP IN PROGRESS
 
+[App-Url](https://gymeasure-production-6dcb6.web.app/)
+
 ## Gymeasure app(with firebase/firestore) - track your gym progress
 
 ### Current functionalities

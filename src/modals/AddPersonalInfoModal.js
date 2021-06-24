@@ -12,22 +12,16 @@ export default function AddPersonalInfoModal(props) {
             </Modal.Header>
             <Modal.Body>
                 <InputGroup className="mb-3">
-                    <InputGroup.Prepend style={{ display: 'flex' }}>
+                    <InputGroup.Prepend style={{ display: 'grid', gridTemplateColumns: '0.5fr 2.5fr', margin: 'auto' }}>
                         <InputGroup.Text>First name</InputGroup.Text>
                         <FormControl ref={props.firstNameRef} value={props.firstName} onChange={e => props.setFirstName(e.target.value)} />
                         <InputGroup.Text>Last name</InputGroup.Text>
                         <FormControl ref={props.lastNameRef} value={props.lastName} onChange={e => props.setLastName(e.target.value)} />
-                    </InputGroup.Prepend>
-
-                </InputGroup>
-                <InputGroup className="mb-3">
-                    <InputGroup.Prepend style={{ display: 'flex' }}>
                         <InputGroup.Text>Age</InputGroup.Text>
                         <FormControl ref={props.ageRef} value={props.age} onChange={e => props.setAge(e.target.value)} />
                         <InputGroup.Text>Sex</InputGroup.Text>
                         <FormControl ref={props.sexRef} value={props.sex} onChange={e => props.setSex(e.target.value)} />
                     </InputGroup.Prepend>
-
                 </InputGroup>
                 <Modal.Footer>
                     <Button variant="danger" onClick={props.handleCloseAddPersonalInfo}>

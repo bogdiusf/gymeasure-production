@@ -40,7 +40,7 @@ export default function Signup() {
                         <Card.Body>
                             <h2 className="text-center mb-4">Sign up</h2>
                             {error && <Alert variant="danger">{error}</Alert>}
-                            <Alert variant="info">After signing up, please check your mail inbox for further instructions on how to activate your account!</Alert>
+                            <Alert variant="info">After signing up, please check your e-mail inbox for further instructions on how to activate your account!</Alert>
                             <Form onSubmit={handleSignUp}>
                                 <Form.Group id="email" className="mt-2">
                                     <Form.Label>Email</Form.Label>

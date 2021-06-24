@@ -293,9 +293,9 @@ export default function Dashboard() {
     const filterMeasurements = (text) => {
         if (text !== '') {
             // const tempText = text
-            let newArr = measurements.filter(item => item.waist.includes(text))
+            let newArr = measurements.filter(item => item.measured_on_day.includes(text))
             setMeasurements(newArr)
-            newArr = copyOfMeasurements.filter(item => item.waist.includes(text))
+            newArr = copyOfMeasurements.filter(item => item.measured_on_day.includes(text))
             if (text !== '' && newArr.length > 0) {
                 setMeasurements(newArr)
             }

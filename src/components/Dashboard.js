@@ -118,48 +118,9 @@ export default function Dashboard() {
     }
 
     // fetching data from firestore - measurements + personal info
-    const fetchData = () => {
-        db.collection('users')
-            .doc(currentUser.uid)
-            .collection('measurements')
-            .orderBy("measured_on", "desc")
-            .onSnapshot(response => {
-                const tempArray = []
-                response.forEach((item) => {
-                    const objToBeAdded = {
-                        document_id: item.id,
-                        measured_on_day: item.measured_on_day,
-                        measured_at_time: item.measured_at_time,
-                        ...item.data()
-                    }
-                    tempArray.push(objToBeAdded)
-                })
-                setMeasurements(tempArray)
-                setCopyOfMeasurements(tempArray)
-            })
-
-
-        db.collection('users')
-            .doc(currentUser.uid)
-            .collection('personal-info')
-            .onSnapshot(response => {
-                const tempArray = []
-                response.forEach((item) => {
-                    const objToBeAdded = {
-                        id: item.id,
-                        ...item.data()
-                    }
-                    tempArray.push(objToBeAdded)
-                })
-                setPersonalInfo(tempArray)
-                if (personalInfo.length === 0) {
-                    setFirstName('')
-                    setLastName('')
-                    setAge('')
-                    setSex('')
-                }
-            })
-    }
+    // const fetchData = () => {
+        
+    // }
 
     // adding personal info from inputs straight to firestore
     const addPersonalInfo = async () => {
@@ -225,9 +186,6 @@ export default function Dashboard() {
         catch (e) {
             alert(e)
         }
-
-
-
     }
 
     // function that updates personal info data in firestore
@@ -270,6 +228,7 @@ export default function Dashboard() {
     }
 
     const updateMeasurements = async (id) => {
+
         await db.collection('users')
             .doc(currentUser.uid)
             .collection('measurements')
@@ -281,6 +240,18 @@ export default function Dashboard() {
                 quads: editQuadsRef.current.value
             })
         try {
+
+            // const objToBeAdded = {
+            //     arms: armsEdited,
+            //     quads: quadsEdited,
+            //     waist: waistEdited,
+            //     chest: chestEdited
+            // }
+
+            // const newArr = measurements.filter((item) => item.measurement_id !== id)
+            // newArr.push(objToBeAdded)
+            // setMeasurements(newArr)
+            
             setError('Your info has been successfully updated!')
             handleCloseEditMeasurements()
             handleShowConfirmationModal()
@@ -288,6 +259,7 @@ export default function Dashboard() {
         catch (e) {
             alert(`${e}`)
         }
+        
     }
 
     const filterMeasurements = (text) => {
@@ -308,8 +280,48 @@ export default function Dashboard() {
 
     // calling fetchData once, as soon as component loads
     useEffect(() => {
-        fetchData()
-    }, [])
+        // fetchData()
+        db.collection('users')
+            .doc(currentUser.uid)
+            .collection('measurements')
+            .orderBy("measured_on", "desc")
+            .onSnapshot(response => {
+                const tempArray = []
+                response.forEach((item) => {
+                    const objToBeAdded = {
+                        document_id: item.id,
+                        measured_on_day: item.measured_on_day,
+                        measured_at_time: item.measured_at_time,
+                        ...item.data()
+                    }
+                    tempArray.push(objToBeAdded)
+                })
+                setMeasurements(tempArray)
+                setCopyOfMeasurements(tempArray)
+            })
+
+
+        db.collection('users')
+            .doc(currentUser.uid)
+            .collection('personal-info')
+            .onSnapshot(response => {
+                const tempArray = []
+                response.forEach((item) => {
+                    const objToBeAdded = {
+                        id: item.id,
+                        ...item.data()
+                    }
+                    tempArray.push(objToBeAdded)
+                })
+                setPersonalInfo(tempArray)
+                if (personalInfo.length === 0) {
+                    setFirstName('')
+                    setLastName('')
+                    setAge('')
+                    setSex('')
+                }
+            })
+    }, [currentUser.uid, personalInfo.length, measurements.length])
 
     return (
         <React.Fragment>
@@ -415,6 +427,10 @@ export default function Dashboard() {
                 chestEdited={chestEdited}
                 armsEdited={armsEdited}
                 quadsEdited={quadsEdited}
+                // setChestEdited={setChestEdited}
+                // setArmsEdited={setArmsEdited}
+                // setQuadsEdited={setQuadsEdited}
+                // setWaistEdited={setWaistEdited}
                 editArmsRef={editArmsRef}
                 editChestRef={editChestRef}
                 editQuadsRef={editQuadsRef}

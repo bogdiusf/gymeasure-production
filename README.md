@@ -30,6 +30,5 @@
 
 ### Current stuck at's
 - Setting login session for firebase login
-- Fixing dev tools console errors (sometimes)
 - Dealing with global and local scoping with `CSS`
 - After measurement update, component doesnt rerender automatically but needs a refresh (aware of why it doesn't work)

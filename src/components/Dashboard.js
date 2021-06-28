@@ -64,6 +64,7 @@ export default function Dashboard() {
     const [waistEdited, setWaistEdited] = useState('')
     const [error, setError] = useState('')
     const [tempDocId, setTempDocId] = useState(null)
+    const [deleteDocId, setDeleteDocId] = useState(null)
     // ---------------------
 
     // declaring functions who when called, change the behaviour of the modals 
@@ -321,7 +322,7 @@ export default function Dashboard() {
                     setSex('')
                 }
             })
-    }, [currentUser.uid, personalInfo.length, measurements.length])
+    }, [currentUser.uid, personalInfo.length])
 
     return (
         <React.Fragment>
@@ -415,6 +416,8 @@ export default function Dashboard() {
                 filterMeasurements={filterMeasurements}
                 handleShowEditMeasurements={handleShowEditMeasurements}
                 setTempDocId={setTempDocId}
+                setDeleteDocId={setDeleteDocId}
+                deleteDocId={deleteDocId}
                 showDeleteMeasurementConfirmation={showDeleteMeasurementConfirmation}
                 showDeleteMeasurementConfirmationModal={showDeleteMeasurementConfirmationModal}
                 closeDeleteMeasurementConfirmation={closeDeleteMeasurementConfirmation}

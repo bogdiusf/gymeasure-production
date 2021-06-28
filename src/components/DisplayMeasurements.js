@@ -50,12 +50,15 @@ export default function DisplayMeasurements(props) {
                                 props.handleShowEditMeasurements(item.document_id)
                                 props.setTempDocId(item.document_id)
                             }}>Edit</Button>
-                            <Button onClick={() => props.showDeleteMeasurementConfirmation()} variant="danger">Delete</Button>
+                            <Button onClick={() => {
+                                props.showDeleteMeasurementConfirmation()
+                                props.setDeleteDocId(item.document_id)
+                                }} variant="danger">Delete</Button>
                         </div>
                         <DeleteConfirmationModal
                             showDeleteMeasurementConfirmation={props.showDeleteMeasurementConfirmation}
                             showDeleteMeasurementConfirmationModal={props.showDeleteMeasurementConfirmationModal}
-                            document_id={item.document_id}
+                            document_id={props.deleteDocId}
                             deleteMeasurement={props.deleteMeasurement}
                             closeDeleteMeasurementConfirmation={props.closeDeleteMeasurementConfirmation}
                         />

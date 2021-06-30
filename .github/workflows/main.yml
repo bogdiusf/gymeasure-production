@@ -26,13 +26,13 @@ jobs:
       - name: Create env file
         run: |
           touch .env.local
-          echo REACT_APP_FIREBASE_API_KEY=AIzaSyCLtKGMh6Tv-obYZ_I-BkPE3TQf90sYCFg >> .env.local
-          echo REACT_APP_FIREBASE_AUTH_DOMAIN=gymeasure-production-6dcb6.firebaseapp.com >> .env.local
-          echo REACT_APP_FIREBASE_DATABASE_URL=https://gymeasure-production-6dcb6-default-rtdb.firebaseio.com >> .env.local
-          echo REACT_APP_FIREBASE_PROJECT_ID=gymeasure-production-6dcb6 >> .env.local
-          echo REACT_APP_FIREBASE_STORAGE_BUCKET=gymeasure-production-6dcb6.appspot.com >> .env.local
-          echo REACT_APP_FIREBASE_MESSAGING_SENDER_ID=504925768718 >> .env.local
-          echo REACT_APP_FIREBASE_APP_ID=1:504925768718:web:6ca81dd63268019c27005f >> .env.local
+          echo REACT_APP_FIREBASE_API_KEY=${{ secrets.REACT_APP_FIREBASE_API_KEY }} >> .env.local
+          echo REACT_APP_FIREBASE_AUTH_DOMAIN=${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }} >> .env.local
+          echo REACT_APP_FIREBASE_DATABASE_URL=${{ secrets.REACT_APP_FIREBASE_DATABASE_URL }} >> .env.local
+          echo REACT_APP_FIREBASE_PROJECT_ID=${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }} >> .env.local
+          echo REACT_APP_FIREBASE_STORAGE_BUCKET=${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }} >> .env.local
+          echo REACT_APP_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }} >> .env.local
+          echo REACT_APP_FIREBASE_APP_ID=${{ secrets.REACT_APP_FIREBASE_APP_ID }} >> .env.local
       - name: Build dependencies
         run: npm run build
       - name: Archive production artifact

@@ -13,7 +13,7 @@ export default function DisplayMeasurements(props) {
             <div style={{ color: 'white', textAlign: 'center', width: '80%', margin: 'auto', marginTop: '30px', padding: '0' }}>
                 <InputGroup className="mb-3 searchInputGroup">
                     <InputGroup.Text>Search by date</InputGroup.Text>
-                    <FormControl placeholder="dd/mm/yyyy" style={{ textAlign: 'center', fontWeight: '500' }} onChange={(e) => props.filterMeasurements(e.target.value)} />
+                    <FormControl placeholder="DD/MM/YYYY" style={{ textAlign: 'center', fontWeight: '500' }} onChange={(e) => props.filterMeasurements(e.target.value)} />
                 </InputGroup>
             </div>
             <div className="measurementsWrapper">

@@ -17,11 +17,11 @@
 - Server-side CRUD on measurements (firestore)
 - Add measurements input validation
 - Live search bar (UI updating on every keystroke)
+- CI / CD with Github actions and Firebase
 
 ### To do list
 - Improve overall design
 - Posibility to add photos / each measurements "session" to keep track of visual progress
-- Deployment (CI / CD)
 - Edit personal info input validation
 - Fix bug auto rerender edit-update measurements
 - UI/UX improvement

@@ -1,8 +1,8 @@
 body {
-    background-image: url('./images/gym_pic.jpg');
-    background-size: cover;
-    background-color: rgba(0, 0, 0, 0.85);
-    background-blend-mode: darken;
+    /* background-image: url('./images/gym_pic.jpg'); */
+    /* background-size: cover; */
+    background: rgba(0, 0, 0, 0.9);
+    /* background-blend-mode: darken; */
 }
 
 #logOutButton {
@@ -80,6 +80,14 @@ h4 {
 
 .searchInputGroup:last-child {
     width: 90%;
+}
+
+.videoOverlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    opacity: 0.15;
 }
 
 @media (max-width: 1000px) {

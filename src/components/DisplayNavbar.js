@@ -1,17 +1,18 @@
 import React from 'react'
 import { Nav, Button, Navbar } from 'react-bootstrap'
 import '../style.css'
+import navbarImg from '../images/gym_pic.jpg'
 // import logo from '../images/gym_logo.jpg'
 
 export default function DisplayNavbar(props) {
 
     return (
-        <Navbar expand="lg" className="d-flex flex-row" style={{ padding: '20px', backgroundColor: 'rgba(255,255,255,0.2)' }}>
+        <Navbar expand="lg" className="d-flex flex-row" style={{ padding: '20px', background: 'rgba(0,0,0,1)'}}>
             {
                 props.personalInfo.length > 0 && props.personalInfo.map(item => (
                     <div key={item.id} id="navbarBrand">
                         <span id="navbarBrand-name">
-                            <Navbar.Brand style={{ fontWeight: '500', color: 'rgba(255,255,255,0.75)' }}>
+                            <Navbar.Brand style={{ fontWeight: '500', color: 'rgba(255,255,255,1)' }}>
                                 {/* <img src={logo} style={{ width: '30px', height: '30px' }}></img> */}
                                 <span>{item.firstName} {item.lastName}</span>
                             </Navbar.Brand></span><br />

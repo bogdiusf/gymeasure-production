@@ -4,12 +4,17 @@ import '../style.css'
 import FormControl from 'react-bootstrap/FormControl'
 import InputGroup from 'react-bootstrap/InputGroup'
 import DeleteConfirmationModal from '../modals/DeleteConfirmationModal'
+import video from '../videos/cutler_video.mp4'
 
 export default function DisplayMeasurements(props) {
 
 
     return (
         <>
+            <div className="videoOverlay">
+                <video src={video} autoPlay={true}
+                style={{objectFit:'cover', position:'fixed', right:'0', bottom:'0', minHeight:'100%', minWidth:'100%'}}/>
+            </div>
             <div style={{ color: 'white', textAlign: 'center', width: '80%', margin: 'auto', marginTop: '30px', padding: '0' }}>
                 <InputGroup className="mb-3 searchInputGroup">
                     <InputGroup.Text>Search by date</InputGroup.Text>

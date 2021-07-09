@@ -1,17 +1,18 @@
-# APP IN PROGRESS
+# Application URL
+
+
 
 [App-Url](https://gymeasure-production-6dcb6.web.app/)
 
 ## Gymeasure app(with firebase/firestore) - track your gym progress
 
 ### Current functionalities
-- Login with email/pw (firebase)
+- Login with email/pw (firebase)s
 - Signup with email/pw (firebase)
 - Logout (firebase)
 - Forgot password module with rest link via email (firebase)
 - Verification link sent to email after sign up (firebase)
 - Login validation : no login until account verified
-- CRUD 
 - Realtime UI data display / update
 - Add / Edit personal data (firestore)
 - Add personal info input validation
@@ -21,10 +22,11 @@
 - CI / CD with Github actions and Firebase
 
 ### Tech list
-- React.js
+- React.js (Context API)
 - Javascript
 - CSS
 - React bootstrap
+- Firebase
 
 ### To do list
 - Improve overall design

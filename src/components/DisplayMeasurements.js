@@ -29,19 +29,19 @@ export default function DisplayMeasurements(props) {
                             </div>
                             <InputGroup.Prepend style={{ display: 'grid', gridTemplateColumns: '100px 1fr 0.4fr', margin: 'auto', marginTop: '10px', width: '100%' }}>
                                 <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }}>Waist</InputGroup.Text>
-                                <FormControl defaultValue={`${item.waist}`} style={{ textAlign: 'center', fontWeight: '500' }} disabled={true} />
+                                <FormControl value={item.waist} style={{ textAlign: 'center', fontWeight: '500' }} disabled={true} />
                                 <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }}>cm</InputGroup.Text>
 
                                 <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }}>Chest</InputGroup.Text>
-                                <FormControl defaultValue={`${item.chest}`} style={{ textAlign: 'center', fontWeight: '500' }} disabled={true} />
+                                <FormControl value={item.chest} style={{ textAlign: 'center', fontWeight: '500' }} disabled={true} />
                                 <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }} disabled={true}>cm</InputGroup.Text>
 
                                 <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }}>Arms</InputGroup.Text>
-                                <FormControl defaultValue={`${item.arms}`} style={{ textAlign: 'center', fontWeight: '500' }} disabled={true} />
+                                <FormControl value={item.arms} style={{ textAlign: 'center', fontWeight: '500' }} disabled={true} />
                                 <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }} disabled={true}>cm</InputGroup.Text>
 
                                 <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }} >Quads</InputGroup.Text>
-                                <FormControl defaultValue={`${item.quads}`} style={{ textAlign: 'center', fontWeight: '500' }} disabled={true} />
+                                <FormControl value={item.quads} style={{ textAlign: 'center', fontWeight: '500' }} disabled={true} />
                                 <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }} disabled={true}>cm</InputGroup.Text>
                             </InputGroup.Prepend>
                         </InputGroup>

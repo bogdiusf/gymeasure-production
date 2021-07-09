@@ -120,7 +120,7 @@ export default function Dashboard() {
 
     // fetching data from firestore - measurements + personal info
     // const fetchData = () => {
-        
+
     // }
 
     // adding personal info from inputs straight to firestore
@@ -242,17 +242,18 @@ export default function Dashboard() {
             })
         try {
 
-            // const objToBeAdded = {
-            //     arms: armsEdited,
-            //     quads: quadsEdited,
-            //     waist: waistEdited,
-            //     chest: chestEdited
-            // }
+            const updatedMeasurements = measurements
+            updatedMeasurements.forEach(item => {
+                if (item.document_id === id) {
+                    item.waist = editWaistRef.current.value;
+                    item.arms = editArmsRef.current.value;
+                    item.chest = editChestRef.current.value;
+                    item.quads = editQuadsRef.current.value;
+                }
+            })
 
-            // const newArr = measurements.filter((item) => item.measurement_id !== id)
-            // newArr.push(objToBeAdded)
-            // setMeasurements(newArr)
-            
+            setMeasurements([...updatedMeasurements])
+
             setError('Your info has been successfully updated!')
             handleCloseEditMeasurements()
             handleShowConfirmationModal()
@@ -260,7 +261,7 @@ export default function Dashboard() {
         catch (e) {
             alert(`${e}`)
         }
-        
+
     }
 
     const filterMeasurements = (text) => {

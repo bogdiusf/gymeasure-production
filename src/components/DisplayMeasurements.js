@@ -9,7 +9,7 @@ export default function DisplayMeasurements(props) {
 
 
     return (
-        <>
+        <React.Fragment>
             <div style={{ color: 'white', textAlign: 'center', width: '80%', margin: 'auto', marginTop: '30px', padding: '0' }}>
                 <InputGroup className="mb-3 searchInputGroup">
                     <InputGroup.Text>Search by date</InputGroup.Text>
@@ -53,7 +53,7 @@ export default function DisplayMeasurements(props) {
                             <Button onClick={() => {
                                 props.showDeleteMeasurementConfirmation()
                                 props.setDeleteDocId(item.document_id)
-                                }} variant="danger">Delete</Button>
+                            }} variant="danger">Delete</Button>
                         </div>
                         <DeleteConfirmationModal
                             showDeleteMeasurementConfirmation={props.showDeleteMeasurementConfirmation}
@@ -71,7 +71,7 @@ export default function DisplayMeasurements(props) {
                     ''
                 }
             </div >
-        </>
+        </React.Fragment>
     )
 
 }

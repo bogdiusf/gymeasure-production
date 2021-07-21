@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router'
 import { Button } from 'react-bootstrap'
 import Modal from "react-bootstrap/Modal"
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 
 export default function LogoutModal(props) {
 

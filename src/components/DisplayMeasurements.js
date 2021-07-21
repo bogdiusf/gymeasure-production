@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import '../style.css'
 import FormControl from 'react-bootstrap/FormControl'
 import InputGroup from 'react-bootstrap/InputGroup'
-import DeleteConfirmationModal from '../modals/DeleteConfirmationModal'
+import DeleteConfirmationModal from './modals/DeleteConfirmationModal'
 
 export default function DisplayMeasurements(props) {
 

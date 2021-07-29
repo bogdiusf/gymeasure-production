@@ -9,10 +9,8 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-
     const [currentUser, setCurrentUser] = useState(null)
     const [userLoading, setUserLoading] = useState(true)
-
 
     const signup = (email, password) => {
         async function handleSignup() {
@@ -20,8 +18,7 @@ export function AuthProvider({ children }) {
             try {
                 result.user.sendEmailVerification()
                 auth.signOut()
-            }
-            catch (e) {
+            } catch (e) {
                 console.log(e)
             }
         }
@@ -42,8 +39,8 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         // if new user -> set user in firebase
-        // useEffect will only load once 
-        const unsubscribe = auth.onAuthStateChanged(user => {
+        // useEffect will only load once
+        const unsubscribe = auth.onAuthStateChanged((user) => {
             setCurrentUser(user)
             setUserLoading(false)
         })
@@ -56,14 +53,8 @@ export function AuthProvider({ children }) {
         signup,
         login,
         logout,
-        forgotPassword,
+        forgotPassword
     }
 
-    return (
-        <AuthContext.Provider value={value}>
-            {!userLoading && children}
-        </AuthContext.Provider>
-
-
-    )
+    return <AuthContext.Provider value={value}>{!userLoading && children}</AuthContext.Provider>
 }

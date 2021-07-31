@@ -20,7 +20,6 @@ export default function ConfirmationModal(props) {
                     }
                     else {
                         props.handleCloseConfirmationModal();
-                        props.handleShowAddPersonalInfo()
                     }
                 }}>
                     Close

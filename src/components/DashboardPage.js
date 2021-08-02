@@ -3,7 +3,7 @@ import { useAuth } from '../contexts/AuthContext'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style.css'
 import { db } from '../services/firebase'
-import { generate } from 'shortid'
+// import { generate } from 'shortid'
 import ConfirmationModal from './pages/dashboard/ConfirmationModal'
 import Measurements from './pages/dashboard/Measurements'
 import LogoutModal from './pages/dashboard/LogoutModal'
@@ -35,7 +35,7 @@ export default function Dashboard() {
 
     // initializing needed states  -----------
     const [copyOfMeasurements, setCopyOfMeasurements] = useState()
-    const [isSaveMeasurementChangesEnabled, setIsSaveMeasurementChangesEnabled] = useState(false)
+    // const [isSaveMeasurementChangesEnabled, setIsSaveMeasurementChangesEnabled] = useState(false)
     const [showLoggedOut, setShowLoggedOut] = useState(false)
     const [confirmationModal, setConfirmationModal] = useState(false)
     const [showDeleteMeasurementConfirmationModal, setShowDeleteMeasurementConfirmationModal] =
@@ -45,15 +45,15 @@ export default function Dashboard() {
     const [deleteDocId, setDeleteDocId] = useState(null)
     // ---------------------
 
-    const handleCloseEditPersonalInfo = () => { }
+    const handleCloseEditPersonalInfo = () => {}
     const handleShowLoggedOut = () => setShowLoggedOut(true)
     const handleCloseLoggedOut = () => setShowLoggedOut(false)
     const handleCloseConfirmationModal = () => {
         setConfirmationModal(false)
     }
-    const handleCloseEditMeasurements = () => {
-        setIsSaveMeasurementChangesEnabled(false)
-    }
+    // const handleCloseEditMeasurements = () => {
+    //     setIsSaveMeasurementChangesEnabled(false)
+    // }
     const closeDeleteMeasurementConfirmation = () =>
         setShowDeleteMeasurementConfirmationModal(false)
 
@@ -185,19 +185,21 @@ export default function Dashboard() {
                     quads: quadsSize
                 })
 
-            setMeasurements(measurements.map(item => {
-                if (item.document_id === measurementId) {
-                    return {
-                        ...item,
-                        waist: waistSize,
-                        arm: armsSize,
-                        chest: chestSize,
-                        quads: quadsSize
+            setMeasurements(
+                measurements.map((item) => {
+                    if (item.document_id === measurementId) {
+                        return {
+                            ...item,
+                            waist: waistSize,
+                            arm: armsSize,
+                            chest: chestSize,
+                            quads: quadsSize
+                        }
                     }
-                }
 
-                return item
-            }))
+                    return item
+                })
+            )
 
             setError('Your info has been successfully updated!')
             setShowAddMeasurements(false)

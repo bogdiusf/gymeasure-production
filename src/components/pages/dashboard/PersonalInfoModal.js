@@ -62,11 +62,23 @@ export default function PersonalInfoModal({
             </Modal.Header>
             <Modal.Body>
                 <InputGroup className="mb-3">
-                    <InputGroup.Prepend style={{ display: 'grid', gridTemplateColumns: '0.5fr 2.5fr', margin: 'auto' }}>
+                    <InputGroup.Prepend
+                        style={{
+                            display: 'grid',
+                            gridTemplateColumns: '0.5fr 2.5fr',
+                            margin: 'auto'
+                        }}
+                    >
                         <InputGroup.Text>First name</InputGroup.Text>
-                        <FormControl value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                        <FormControl
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                        />
                         <InputGroup.Text>Last name</InputGroup.Text>
-                        <FormControl value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                        <FormControl
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                        />
                         <InputGroup.Text>Age</InputGroup.Text>
                         <FormControl value={age} onChange={(e) => setAge(e.target.value)} />
                         <InputGroup.Text>Sex</InputGroup.Text>

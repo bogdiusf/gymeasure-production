@@ -44,11 +44,13 @@ export default function DisplayNavbar({
             <Navbar.Collapse id="basic-navbar-nav" style={{ textAlign: 'center' }}>
                 <Nav className="d-flex gap-4" style={{ marginLeft: 'auto' }}>
                     <br />
-                    <Button id="addMeasurementsButton" onClick={() => {
-                        setEditMeasurement(false)
-                        setShowAddMeasurements(true)
-                    }
-                    }>
+                    <Button
+                        id="addMeasurementsButton"
+                        onClick={() => {
+                            setEditMeasurement(false)
+                            setShowAddMeasurements(true)
+                        }}
+                    >
                         Add today's measurements
                     </Button>
 

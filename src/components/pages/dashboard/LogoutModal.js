@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 import Modal from 'react-bootstrap/Modal'
 import { useAuth } from '../../../contexts/AuthContext'
 
-export default function LogoutModal(props) {
+export default function LogoutModal({ handleCloseLoggedOut, showLoggedOut }) {
     const { logout } = useAuth()
     const history = useHistory()
 
@@ -18,7 +18,7 @@ export default function LogoutModal(props) {
     }
 
     return (
-        <Modal show={props.showLoggedOut} onHide={props.handleCloseLoggedOut} backdrop="static">
+        <Modal show={showLoggedOut} onHide={handleCloseLoggedOut} backdrop="static">
             <Modal.Header>
                 <Modal.Title>Are you sure you want to log out?</Modal.Title>
             </Modal.Header>
@@ -26,7 +26,7 @@ export default function LogoutModal(props) {
                 <Button variant="success" onClick={handleLogout} style={{ width: '80px' }}>
                     Yes
                 </Button>
-                <Button variant="danger" onClick={props.handleCloseLoggedOut} style={{ width: '80px' }}>
+                <Button variant="danger" onClick={handleCloseLoggedOut} style={{ width: '80px' }}>
                     No
                 </Button>
             </Modal.Footer>

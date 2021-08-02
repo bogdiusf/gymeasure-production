@@ -4,47 +4,87 @@ import { Button } from 'react-bootstrap'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 
-export default function EditMeasurementsModal(props) {
-
-
+export default function EditMeasurementsModal({
+    showEditMeasurements,
+    handleCloseEditPersonalInfo,
+    setIsSaveMeasurementChangesEnabled,
+    editWaistRef,
+    waistEdited,
+    editChestRef,
+    chestEdited,
+    editArmsRef,
+    armsEdited,
+    editQuadsRef,
+    quadsEdited,
+    handleCloseEditMeasurements,
+    updateMeasurements,
+    tempDocId
+}) {
     return (
-        <Modal show={props.showEditMeasurements} onHide={props.handleCloseEditPersonalInfo} backdrop="static" >
+        <Modal show={showEditMeasurements} onHide={handleCloseEditPersonalInfo} backdrop="static">
             <Modal.Header style={{ backgroundColor: '#0d6efd' }}>
-                <Modal.Title style={{ margin: 'auto', color: 'white' }}>Edit measurements</Modal.Title>
+                <Modal.Title style={{ margin: 'auto', color: 'white' }}>
+                    Edit measurements
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-
                 <InputGroup className="mb-3" style={{ justifyContent: 'center' }}>
-                    <InputGroup.Prepend style={{ display: 'grid', gridTemplateColumns: '0.5fr 2.5fr', margin: 'auto' }}>
+                    <InputGroup.Prepend
+                        style={{
+                            display: 'grid',
+                            gridTemplateColumns: '0.5fr 2.5fr',
+                            margin: 'auto'
+                        }}
+                    >
                         <InputGroup.Text>Waist</InputGroup.Text>
-                        <FormControl ref={props.editWaistRef} defaultValue={props.waistEdited} onChange={() => {
-                            props.setIsSaveMeasurementChangesEnabled(true)
-                            // props.setWaistEdited(e.target.value)
-                        }} type="number" />
+                        <FormControl
+                            ref={editWaistRef}
+                            defaultValue={waistEdited}
+                            onChange={() => {
+                                setIsSaveMeasurementChangesEnabled(true)
+                            }}
+                            type="number"
+                        />
                         <InputGroup.Text>Chest</InputGroup.Text>
-                        <FormControl ref={props.editChestRef} defaultValue={props.chestEdited} onChange={() => {
-                            props.setIsSaveMeasurementChangesEnabled(true)
-                            // props.setChestEdited(e.target.value)
-                        }} type="number" />
+                        <FormControl
+                            ref={editChestRef}
+                            defaultValue={chestEdited}
+                            onChange={() => {
+                                setIsSaveMeasurementChangesEnabled(true)
+                            }}
+                            type="number"
+                        />
                         <InputGroup.Text>Arms</InputGroup.Text>
-                        <FormControl ref={props.editArmsRef} defaultValue={props.armsEdited} onChange={() => {
-                            props.setIsSaveMeasurementChangesEnabled(true)
-                            // props.setArmsEdited(e.target.value)
-                        }} type="number" />
+                        <FormControl
+                            ref={editArmsRef}
+                            defaultValue={armsEdited}
+                            onChange={() => {
+                                props.setIsSaveMeasurementChangesEnabled(true)
+                            }}
+                            type="number"
+                        />
                         <InputGroup.Text>Quads</InputGroup.Text>
-                        <FormControl ref={props.editQuadsRef} defaultValue={props.quadsEdited} onChange={() => {
-                            props.setIsSaveMeasurementChangesEnabled(true)
-                            // props.setQuadsEdited(e.target.value)
-                        }} type="number" />
+                        <FormControl
+                            ref={editQuadsRef}
+                            defaultValue={quadsEdited}
+                            onChange={() => {
+                                setIsSaveMeasurementChangesEnabled(true)
+                            }}
+                            type="number"
+                        />
                     </InputGroup.Prepend>
                 </InputGroup>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={props.handleCloseEditMeasurements}>
+                    <Button variant="danger" onClick={handleCloseEditMeasurements}>
                         Close
                     </Button>
-                    <Button disabled={!props.isSaveMeasurementChangesEnabled} variant="success" onClick={() => {
-                        props.updateMeasurements(props.tempDocId)
-                    }}>
+                    <Button
+                        disabled={!isSaveMeasurementChangesEnabled}
+                        variant="success"
+                        onClick={() => {
+                            updateMeasurements(tempDocId)
+                        }}
+                    >
                         Save Changes
                     </Button>
                 </Modal.Footer>

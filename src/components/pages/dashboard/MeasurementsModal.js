@@ -83,13 +83,16 @@ export default function MeasurementsModal({
                     <Button variant="danger" onClick={() => setShowAddMeasurements(false)}>
                         Close
                     </Button>
-                    <Button variant="success" onClick={() => {
-                        if (editMeasurement) {
-                            updateMeasurement()
-                        } else {
-                            addMeasurements()
-                        }
-                    }}>
+                    <Button
+                        variant="success"
+                        onClick={() => {
+                            if (editMeasurement) {
+                                updateMeasurement()
+                            } else {
+                                addMeasurements()
+                            }
+                        }}
+                    >
                         Save info
                     </Button>
                 </Modal.Footer>

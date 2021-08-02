@@ -20,7 +20,9 @@ export default function ForgotPassword() {
             setError('')
             setLoading(true)
             await forgotPassword(email)
-            setMessage('An email has been sent to your inbox. Please check it for further information on how to reset your password!')
+            setMessage(
+                'An email has been sent to your inbox. Please check it for further information on how to reset your password!'
+            )
         } catch (e) {
             setError('Email does not exist!')
         }

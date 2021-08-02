@@ -33,8 +33,15 @@ export default function Signup() {
     }
 
     return (
-        <FormContainer title="Sign up" error={error} footer={<FormFooter value1="Already have an account?" value2="Log in" path="/login" />}>
-            <Alert variant="info">After signing up, please check your e-mail inbox for further instructions on how to activate your account!</Alert>
+        <FormContainer
+            title="Sign up"
+            error={error}
+            footer={<FormFooter value1="Already have an account?" value2="Log in" path="/login" />}
+        >
+            <Alert variant="info">
+                After signing up, please check your e-mail inbox for further instructions on how to
+                activate your account!
+            </Alert>
 
             <Form onSubmit={handleSignUp}>
                 <Form.Group id="email" className="mt-2">
@@ -65,7 +72,9 @@ export default function Signup() {
                         type="password"
                         required
                         value={passwords.confirmationPassword}
-                        onChange={(e) => setPasswords({ ...passwords, confirmationPassword: e.target.value })}
+                        onChange={(e) =>
+                            setPasswords({ ...passwords, confirmationPassword: e.target.value })
+                        }
                         placeholder="Please repeat your password"
                     ></Form.Control>
                 </Form.Group>

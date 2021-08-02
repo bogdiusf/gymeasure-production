@@ -2,7 +2,9 @@
 
 ## Application URL
 
-[App-Url](https://gymeasure-production-6dcb6.web.app/)
+[App-Url](https://gymeasure-production-6dcb6.web.app/) <img src="https://media.giphy.com/media/mBRLcBE5qCbe1xvwQ3/giphy.gif" width="30px" alt="gym">
+
+<hr>
 
 ### Current functionalities
 

@@ -15,8 +15,7 @@ export default function Measurements({
     setDeleteDocId,
     setShowDeleteMeasurementConfirmationModal,
     showDeleteMeasurementConfirmationModal,
-    deleteDocId,
-    closeDeleteMeasurementConfirmation
+    deleteDocId
 }) {
     const { currentUser } = useAuth()
 
@@ -66,7 +65,7 @@ export default function Measurements({
                 ) : (
                     measurements.map((item) => (
                         <Measurement
-                            key={item.docuemnt_id}
+                            key={item.document_id}
                             measurement={item}
                             deleteMeasurement={deleteMeasurement}
                             setMeasurementForEditing={setMeasurementForEditing}
@@ -78,7 +77,6 @@ export default function Measurements({
                                 showDeleteMeasurementConfirmationModal
                             }
                             deleteDocId={deleteDocId}
-                            closeDeleteMeasurementConfirmation={closeDeleteMeasurementConfirmation}
                         />
                     ))
                 )}

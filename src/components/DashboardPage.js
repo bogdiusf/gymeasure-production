@@ -3,64 +3,55 @@ import { useAuth } from '../contexts/AuthContext'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style.css'
 import { db } from '../services/firebase'
-// import { generate } from 'shortid'
-import ConfirmationModal from './pages/dashboard/ConfirmationModal'
+import ConfirmationPopup from './shared/ConfirmationPopup'
 import Measurements from './pages/dashboard/Measurements'
-import LogoutModal from './pages/dashboard/LogoutModal'
-import PersonalInfoModal from './pages/dashboard/PersonalInfoModal'
+import PersonalInfoPopup from './pages/dashboard/PersonalInfoPopup'
 import DisplayNavbar from './pages/dashboard/DisplayNavbar'
-import MeasurementsModal from './pages/dashboard/MeasurementsModal'
+import MeasurementsPopup from './pages/dashboard/MeasurementsPopup'
 
 export default function Dashboard() {
     // getting the current user context
     const { currentUser } = useAuth()
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [age, setAge] = useState('')
-    const [sex, setSex] = useState('')
+    const [personalInfo, setPersonalInfo] = useState({
+        firstName: '',
+        lastName: '',
+        age: '',
+        sex: ''
+    })
 
     const [measurements, setMeasurements] = useState([])
 
     const [editMeasurement, setEditMeasurement] = useState(false)
-    const [measurementId, setMeasurementId] = useState(null)
-    const [armsSize, setArmsSize] = useState('')
-    const [quadsSize, setQuadsSize] = useState('')
-    const [chestSize, setChestSize] = useState('')
-    const [waistSize, setWaistSize] = useState('')
+
+    const [measurementsSizes, setMeasurementsSizes] = useState({
+        measurementId: '',
+        armsSize: '',
+        quadsSize: '',
+        chestSize: '',
+        waistSize: ''
+    })
+
+    // const [measurementId, setMeasurementId] = useState(null)
+    // const [armsSize, setArmsSize] = useState('')
+    // const [quadsSize, setQuadsSize] = useState('')
+    // const [chestSize, setChestSize] = useState('')
+    // const [waistSize, setWaistSize] = useState('')
 
     // modals
-    const [showPersInfoModal, setShowPersInfoModal] = useState(false)
-    const [showAddMeasurements, setShowAddMeasurements] = useState(false)
-
-    // initializing needed states  -----------
-    const [copyOfMeasurements, setCopyOfMeasurements] = useState()
-    // const [isSaveMeasurementChangesEnabled, setIsSaveMeasurementChangesEnabled] = useState(false)
-    const [showLoggedOut, setShowLoggedOut] = useState(false)
-    const [confirmationModal, setConfirmationModal] = useState(false)
+    const [showPopup, setShowPopup] = useState(false)
+    const [showPersInfoPopup, setShowPersInfoPopup] = useState(false)
+    const [showAddMeasurementsPopup, setShowAddMeasurementsPopup] = useState(false)
     const [showDeleteMeasurementConfirmationModal, setShowDeleteMeasurementConfirmationModal] =
         useState(false)
 
+    // initializing needed states  -----------
+    const [filteredMeasurements, setFilteredMeasurements] = useState()
     const [error, setError] = useState('')
     const [deleteDocId, setDeleteDocId] = useState(null)
-    // ---------------------
 
-    const handleCloseEditPersonalInfo = () => {}
-    const handleShowLoggedOut = () => setShowLoggedOut(true)
-    const handleCloseLoggedOut = () => setShowLoggedOut(false)
-    const handleCloseConfirmationModal = () => {
-        setConfirmationModal(false)
-    }
-    // const handleCloseEditMeasurements = () => {
-    //     setIsSaveMeasurementChangesEnabled(false)
-    // }
-    const closeDeleteMeasurementConfirmation = () =>
-        setShowDeleteMeasurementConfirmationModal(false)
-
-    // calling fetchData once, as soon as component loads
     useEffect(() => {
         const fetchMeasurements = () => {
-            // fetchData()
             db.collection('users')
                 .doc(currentUser.uid)
                 .collection('measurements')
@@ -77,7 +68,7 @@ export default function Dashboard() {
                         tempArray.push(objToBeAdded)
                     })
                     setMeasurements(tempArray)
-                    setCopyOfMeasurements(tempArray)
+                    setFilteredMeasurements(tempArray)
                 })
         }
 
@@ -90,10 +81,12 @@ export default function Dashboard() {
                     response.forEach((item) => {
                         personalInfo = { ...item.data() }
                     })
-                    setFirstName(personalInfo?.firstName)
-                    setLastName(personalInfo?.lastName)
-                    setAge(personalInfo?.age)
-                    setSex(personalInfo?.sex)
+                    setPersonalInfo({
+                        firstName: personalInfo?.firstName,
+                        lastName: personalInfo?.lastName,
+                        age: personalInfo?.age,
+                        sex: personalInfo?.sex
+                    })
                 })
         }
 
@@ -101,7 +94,6 @@ export default function Dashboard() {
         fecthUserInformation()
     }, [currentUser.uid])
 
-    // function that updates personal info data in firestore
     const updatePersonalInfo = async () => {
         try {
             await db
@@ -109,11 +101,11 @@ export default function Dashboard() {
                 .doc(currentUser.uid)
                 .collection('personal-info')
                 .doc('Informatii personale')
-                .update({ firstName, lastName, age, sex })
+                .update({ ...personalInfo })
 
             setError('Your info has been successfully updated!')
-            setShowPersInfoModal(false)
-            setConfirmationModal(true)
+            setShowPersInfoPopup(false)
+            setShowPopup(true)
         } catch (e) {
             alert(e)
         }
@@ -146,26 +138,33 @@ export default function Dashboard() {
         return { time, date }
     }
 
-    // adding measurements from inputs straight to firestore
     const addMeasurements = async () => {
         try {
             await db.collection('users').doc(currentUser.uid).collection('measurements').doc().set({
-                arms: armsSize,
-                quads: quadsSize,
-                waist: waistSize,
-                chest: chestSize,
+                arms: measurementsSizes.armsSize,
+                quads: measurementsSizes.quadsSize,
+                waist: measurementsSizes.waistSize,
+                chest: measurementsSizes.chestSize,
                 measured_on_day: getCurrentDateAndTime().date,
                 measured_at_time: getCurrentDateAndTime().time,
                 measured_on: new Date()
             })
 
             setError('Your info has been successfully added!')
-            setShowAddMeasurements(false)
-            setConfirmationModal(true)
-            setWaistSize('')
-            setArmsSize('')
-            setQuadsSize('')
-            setChestSize('')
+            setShowAddMeasurementsPopup(false)
+            setShowPopup(true)
+            setMeasurementsSizes({
+                ...measurementsSizes,
+                armsSize: '',
+                quadsSize: '',
+                chestSize: '',
+                waistSize: ''
+            })
+            console.log(measurementsSizes)
+            // setWaistSize('')
+            // setArmsSize('')
+            // setQuadsSize('')
+            // setChestSize('')
         } catch (e) {
             alert(e)
         }
@@ -177,33 +176,32 @@ export default function Dashboard() {
                 .collection('users')
                 .doc(currentUser.uid)
                 .collection('measurements')
-                .doc(measurementId)
+                .doc(measurementsSizes.measurementId)
                 .update({
-                    waist: waistSize,
-                    arms: armsSize,
-                    chest: chestSize,
-                    quads: quadsSize
+                    waist: measurementsSizes.waistSize,
+                    arms: measurementsSizes.armsSize,
+                    chest: measurementsSizes.chestSize,
+                    quads: measurementsSizes.quadsSize
                 })
 
             setMeasurements(
                 measurements.map((item) => {
-                    if (item.document_id === measurementId) {
+                    if (item.document_id === measurementsSizes.measurementId) {
                         return {
                             ...item,
-                            waist: waistSize,
-                            arm: armsSize,
-                            chest: chestSize,
-                            quads: quadsSize
+                            waist: measurementsSizes.waistSize,
+                            arms: measurementsSizes.armsSize,
+                            chest: measurementsSizes.chestSize,
+                            quads: measurementsSizes.quadsSize
                         }
                     }
-
                     return item
                 })
             )
 
             setError('Your info has been successfully updated!')
-            setShowAddMeasurements(false)
-            setConfirmationModal(true)
+            setShowAddMeasurementsPopup(false)
+            setShowPopup(true)
         } catch (e) {
             alert(e)
         }
@@ -211,25 +209,36 @@ export default function Dashboard() {
 
     const setMeasurementForEditing = (id, arms, quads, waist, chest) => {
         setEditMeasurement(true)
-        setMeasurementId(id)
-        setArmsSize(arms)
-        setQuadsSize(quads)
-        setWaistSize(waist)
-        setChestSize(chest)
-        setShowAddMeasurements(true)
+        setMeasurementsSizes({
+            measurementId: id,
+            armsSize: arms,
+            quadsSize: quads,
+            waistSize: waist,
+            chestSize: chest
+        })
+        setShowAddMeasurementsPopup(true)
+    }
+
+    const resetMeasurementForEditing = () => {
+        setMeasurementsSizes({
+            measurementId: '',
+            armsSize: '',
+            quadsSize: '',
+            waistSize: '',
+            chestSize: ''
+        })
     }
 
     const filterMeasurements = (text) => {
         if (text !== '') {
-            // const tempText = text
             let newArr = measurements.filter((item) => item.measured_on_day.includes(text))
             setMeasurements(newArr)
-            newArr = copyOfMeasurements.filter((item) => item.measured_on_day.includes(text))
+            newArr = filteredMeasurements.filter((item) => item.measured_on_day.includes(text))
             if (text !== '' && newArr.length > 0) {
                 setMeasurements(newArr)
             }
         } else if (text === '') {
-            setMeasurements(copyOfMeasurements)
+            setMeasurements(filteredMeasurements)
         }
     }
 
@@ -237,48 +246,34 @@ export default function Dashboard() {
         <React.Fragment>
             <DisplayNavbar
                 setEditMeasurement={setEditMeasurement}
-                firstName={firstName}
-                lastName={lastName}
+                firstName={personalInfo.firstName}
+                lastName={personalInfo.lastName}
                 currentUser={currentUser}
-                setShowPersInfoModal={setShowPersInfoModal}
-                handleShowLoggedOut={handleShowLoggedOut}
-                setShowAddMeasurements={setShowAddMeasurements}
+                setShowPersInfoPopup={setShowPersInfoPopup}
+                setShowAddMeasurementsPopup={setShowAddMeasurementsPopup}
             />
 
-            <MeasurementsModal
+            <MeasurementsPopup
                 editMeasurement={editMeasurement}
+                resetMeasurementForEditing={resetMeasurementForEditing}
                 updateMeasurement={updateMeasurement}
-                showAddMeasurements={showAddMeasurements}
-                setShowAddMeasurements={setShowAddMeasurements}
+                showAddMeasurementsPopup={showAddMeasurementsPopup}
+                setShowAddMeasurementsPopup={setShowAddMeasurementsPopup}
                 addMeasurements={addMeasurements}
-                armsSize={armsSize}
-                quadsSize={quadsSize}
-                chestSize={chestSize}
-                waistSize={waistSize}
-                setChestSize={setChestSize}
-                setArmsSize={setArmsSize}
-                setWaistSize={setWaistSize}
-                setQuadsSize={setQuadsSize}
+                measurementsSizes={measurementsSizes}
+                setMeasurementsSizes={setMeasurementsSizes}
             />
 
-            {/* render logout modal */}
-            <LogoutModal
-                showLoggedOut={showLoggedOut}
-                handleCloseLoggedOut={handleCloseLoggedOut}
+            <ConfirmationPopup
+                isUserFeedbackRequired={false}
+                title={error}
+                showPopup={showPopup}
+                onYes={() => setShowPopup(false)}
             />
 
-            {/* confirmation modal thats being rendered on errors or succeded actions */}
-            <ConfirmationModal
-                confirmationModal={confirmationModal}
-                handleCloseConfirmationModal={handleCloseConfirmationModal}
-                error={error}
-                handleCloseEditPersonalInfo={handleCloseEditPersonalInfo}
-            />
-
-            {/* displays all available measurements */}
             <Measurements
                 setError={setError}
-                setConfirmationModal={setConfirmationModal}
+                setConfirmationModal={setShowPopup}
                 measurements={measurements}
                 filterMeasurements={filterMeasurements}
                 setMeasurementForEditing={setMeasurementForEditing}
@@ -288,33 +283,16 @@ export default function Dashboard() {
                     setShowDeleteMeasurementConfirmationModal
                 }
                 showDeleteMeasurementConfirmationModal={showDeleteMeasurementConfirmationModal}
-                closeDeleteMeasurementConfirmation={closeDeleteMeasurementConfirmation}
             />
 
-            {/* MODALS */}
-            {/* <EditMeasurementsModal
-                showEditMeasurements={showEditMeasurements}
-                isSaveMeasurementChangesEnabled={isSaveMeasurementChangesEnabled}
-                setIsSaveMeasurementChangesEnabled={setIsSaveMeasurementChangesEnabled}
-                handleCloseEditMeasurements={handleCloseEditMeasurements}
-                tempDocId={tempDocId}
-                updateMeasurements={updateMeasurements}
-            /> */}
-
-            <PersonalInfoModal
-                firstName={firstName}
-                setFirstName={setFirstName}
-                lastName={lastName}
-                setLastName={setLastName}
-                age={age}
-                setAge={setAge}
-                sex={sex}
-                setSex={setSex}
-                showPersInfoModal={showPersInfoModal}
-                setShowPersInfoModal={setShowPersInfoModal}
+            <PersonalInfoPopup
+                personalInfo={personalInfo}
+                setPersonalInfo={setPersonalInfo}
+                showPersInfoPopup={showPersInfoPopup}
+                setShowPersInfoPopup={setShowPersInfoPopup}
                 updatePersonalInfo={updatePersonalInfo}
                 setError={setError}
-                setConfirmationModal={setConfirmationModal}
+                setConfirmationModal={setShowPopup}
             />
         </React.Fragment>
     )

@@ -12,7 +12,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
-              uses: actions/checkout@perfection
+              uses: actions/checkout@master
             - name: Install dependencies
               run: npm ci
             - name: Create env file
@@ -28,7 +28,7 @@ jobs:
             - name: Build dependencies
               run: npm run build
             - name: Archive production artifact
-              uses: actions/upload-artifact@perfection
+              uses: actions/upload-artifact@master
               with:
                   name: build
                   path: build
@@ -38,14 +38,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
-              uses: actions/checkout@perfection
+              uses: actions/checkout@master
             - name: Download artifact
-              uses: actions/download-artifact@perfection
+              uses: actions/download-artifact@master
               with:
                   name: build
                   path: build
             - name: Deploy to firebase
-              uses: w9jds/firebase-action@perfection
+              uses: w9jds/firebase-action@master
               with:
                   args: deploy --only hosting
               env:

@@ -45,7 +45,7 @@
         "prettier": {
                 "singleQuote": true,
                 "printWidth": 150,
-                "tabWidth": 8,
+                "tabWidth": 4,
                 "semi": false,
                 "trailingComma": "none"
         }

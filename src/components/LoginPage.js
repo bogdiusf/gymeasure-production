@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link, useHistory } from 'react-router-dom'
 import FormContainer from './shared/FormContainer'
 import FormFooter from './shared/FormFooter'
+import styled from 'styled-components'
 
 export default function Login() {
     const history = useHistory()
@@ -43,7 +44,7 @@ export default function Login() {
                 <Form onSubmit={handleLogin}>
                     <Form.Group id="email" className="mt-2">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control
+                        <StyledInput
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -54,17 +55,17 @@ export default function Login() {
 
                     <Form.Group id="password" className="mt-2">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control
+                        <StyledInput
                             type="password"
                             required
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Please enter your password"
-                        ></Form.Control>
+                        />
                     </Form.Group>
-                    <Button type="submit" className="text-center w-100 mt-4" disabled={loading}>
+                    <StyledButton type="submit" className="text-center w-100 mt-4" disabled={loading}>
                         Log in
-                    </Button>
+                    </StyledButton>
                 </Form>
 
                 <div className="w-100 text-center mt-3">
@@ -74,3 +75,13 @@ export default function Login() {
         </>
     )
 }
+
+const StyledInput = styled(Form.Control)`
+    height: 60px;
+    border-radius: 30px;
+    text-align: center;
+`
+
+const StyledButton = styled(Button)`
+    background: red;
+`

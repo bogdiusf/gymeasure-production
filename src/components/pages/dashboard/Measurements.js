@@ -13,22 +13,14 @@ export default function Measurements({
     measurements,
     setMeasurementForEditing,
     setDeleteDocId,
-    setShowDeleteMeasurementConfirmationModal,
-    showDeleteMeasurementConfirmationModal,
     deleteDocId
 }) {
     const { currentUser } = useAuth()
 
     // function that deletes measurements from firestore
     const deleteMeasurement = async (id) => {
-        await db
-            .collection('users')
-            .doc(currentUser.uid)
-            .collection('measurements')
-            .doc(id)
-            .delete()
         try {
-            setShowDeleteMeasurementConfirmationModal(true)
+            await db.collection('users').doc(currentUser.uid).collection('measurements').doc(id).delete()
             setError('Your measurement has been successfully deleted!')
             setConfirmationModal(true)
         } catch (e) {
@@ -59,9 +51,7 @@ export default function Measurements({
             </div>
             <div className="measurementsWrapper">
                 {measurements.length === 0 ? (
-                    <h1 style={{ color: 'white', marginTop: '50px', textAlign: 'center' }}>
-                        No measurements
-                    </h1>
+                    <h1 style={{ color: 'white', marginTop: '50px', textAlign: 'center' }}>No measurements</h1>
                 ) : (
                     measurements.map((item) => (
                         <Measurement
@@ -70,12 +60,6 @@ export default function Measurements({
                             deleteMeasurement={deleteMeasurement}
                             setMeasurementForEditing={setMeasurementForEditing}
                             setDeleteDocId={setDeleteDocId}
-                            setShowDeleteMeasurementConfirmationModal={
-                                setShowDeleteMeasurementConfirmationModal
-                            }
-                            showDeleteMeasurementConfirmationModal={
-                                showDeleteMeasurementConfirmationModal
-                            }
                             deleteDocId={deleteDocId}
                         />
                     ))

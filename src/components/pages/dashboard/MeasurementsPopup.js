@@ -33,7 +33,8 @@ const MeasurementsPopup = ({
                     variant="success"
                     onClick={() => {
                         if (editMeasurement) {
-                            updateMeasurement().then(resetMeasurementForEditing())
+                            updateMeasurement()
+                            resetMeasurementForEditing()
                         } else {
                             addMeasurements()
                         }

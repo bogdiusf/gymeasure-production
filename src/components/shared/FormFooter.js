@@ -14,6 +14,9 @@ const FooterWrapper = styled.div`
     display: flex;
     padding: 15px 0;
     gap: 10px;
+    > span {
+        font-weight: 500;
+    }
 `
 
 const StyledLink = styled(Link)`

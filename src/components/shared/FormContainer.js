@@ -5,66 +5,37 @@ import welcomePic from '../../images/not-logged-pic.jpg'
 import icon from '../../images/Sonya-Swarm-Mayor-Gym.ico'
 import googleIcon from '../../images/icons8-google-48.png'
 
-const FormContainer = ({ children, title, error, message, footer, loginType }) => (
+const FormContainer = ({ children, title, error, message, footer, loginType, forgotPassword }) => (
     <StyledBody>
         <BackgroundImage img={welcomePic} />
-        <CredentialsWrapper>
-            <Wrapper>
+        <Wrapper>
+            <FormWrapper>
                 <img src={icon} alt="" className="power-logo" />
                 <div className="wrapper-header">
-                    <Title className="title">{title}</Title>
+                    <h1 className="title">{title}</h1>
                     <div className="description">Sweat now, enjoy later!</div>
                 </div>
-                <LoginWithGoogleButton>
-                    <img height="30px" width="30px" alt="" src={googleIcon} />
-                    {loginType} with Google
-                </LoginWithGoogleButton>
+                {forgotPassword === true ? (
+                    ''
+                ) : (
+                    <LoginWithGoogleButton>
+                        <img alt="" src={googleIcon} />
+                        {loginType} with Google
+                    </LoginWithGoogleButton>
+                )}
+
                 <div className="wrapper-body">
                     {children}
                     {footer}
                 </div>
                 {error && <Alert variant="danger">{error}</Alert>}
                 {message && <Alert variant="success">{message}</Alert>}
-            </Wrapper>
-        </CredentialsWrapper>
+                <FooterWrapper>2020 Filip All rights reserved.</FooterWrapper>
+            </FormWrapper>
+        </Wrapper>
     </StyledBody>
 )
-
 export default FormContainer
-
-const CredentialsWrapper = styled.div`
-    background: white;
-    height: '100vh';
-    min-width: 375px;
-    flex: 1;
-`
-const Wrapper = styled.div`
-    width: 60%;
-    min-width: 375px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    .description {
-        color: gray;
-    }
-    .power-logo {
-        height: 50px;
-        width: 50px;
-        margin-top: 50px;
-    }
-    .wrapper-header {
-        margin-top: 50px;
-    }
-    .wrapper-body {
-        margin-top: 50px;
-    }
-`
-
-const Title = styled.h1`
-    font-weight: 600;
-`
 
 const StyledBody = styled.div`
     height: 100vh;
@@ -85,6 +56,41 @@ const BackgroundImage = styled.div`
         display: none;
     }
 `
+const Wrapper = styled.div`
+    background: white;
+    height: '100vh';
+    min-width: 375px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+`
+const FormWrapper = styled.div`
+    width: 60%;
+    min-width: 375px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    .title {
+        font-weight: 600;
+    }
+    .description {
+        color: gray;
+    }
+    .power-logo {
+        height: 50px;
+        width: 50px;
+        margin-top: 50px;
+    }
+    .wrapper-header {
+        margin-top: 35px;
+    }
+    .wrapper-body {
+        margin-top: 50px;
+    }
+`
 
 const LoginWithGoogleButton = styled.button`
     background: #ffffff;
@@ -99,8 +105,18 @@ const LoginWithGoogleButton = styled.button`
     gap: 20px;
     justify-content: center;
     align-items: center;
+    > img {
+        height: 30px;
+        width: 30px;
+    }
     &:hover {
         transition: 0.5s all;
         background: rgba(0, 0, 0, 0.4);
     }
+`
+const FooterWrapper = styled.div`
+    min-width: 375px;
+    color: gray;
+    position: fixed;
+    bottom: 50px;
 `

@@ -39,40 +39,49 @@ export default function Login() {
     }
 
     return (
-        <>
-            <FormContainer
-                title="Login"
-                error={error}
-                footer={<FormFooter value1="Not registered yet?" value2="Create an Account" path="/signup" />}
-                loginType="Sign in"
-            >
-                <Form onSubmit={handleLogin}>
-                    <Form.Group id="email" className="mt-2">
-                        <Form.Label>Email*</Form.Label>
-                        <StyledInput type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="mail@website.com" />
-                    </Form.Group>
+        <FormContainer
+            title="Login"
+            error={error}
+            footer={<FormFooter value1="Not registered yet?" value2="Create an Account" path="/signup" />}
+            loginType="Sign in"
+            forgotPassword={false}
+        >
+            <StyledForm onSubmit={handleLogin}>
+                <Form.Group id="email" className="mt-2">
+                    <StyledLabel>Email*</StyledLabel>
+                    <StyledInput
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        placeholder="Please type your email"
+                    />
+                </Form.Group>
 
-                    <Form.Group id="password" className="mt-2">
-                        <Form.Label>Password*</Form.Label>
-                        <StyledInput
-                            type="password"
-                            required
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Min. 6 charactes"
-                        />
-                    </Form.Group>
-                    <ForgotPassword>
-                        <StyledLink to="/forgot-password">Forgot password?</StyledLink>
-                    </ForgotPassword>
-                    <StyledButton type="submit" className="text-center w-100 mt-4" disabled={loading}>
-                        Log in
-                    </StyledButton>
-                </Form>
-            </FormContainer>
-        </>
+                <Form.Group id="password" className="mt-2">
+                    <StyledLabel>Password*</StyledLabel>
+                    <StyledInput type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                </Form.Group>
+                <ForgotPassword>
+                    <StyledLink to="/forgot-password">Forgot password?</StyledLink>
+                </ForgotPassword>
+                <StyledButton type="submit" className="text-center w-100 mt-4" disabled={loading}>
+                    Log in
+                </StyledButton>
+            </StyledForm>
+        </FormContainer>
     )
 }
+
+const StyledForm = styled(Form)`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`
+
+const StyledLabel = styled(Form.Label)`
+    font-weight: 500;
+`
 
 const StyledInput = styled(Form.Control)`
     height: 50px;
@@ -101,4 +110,6 @@ const ForgotPassword = styled.div`
 `
 const StyledLink = styled(Link)`
     text-decoration: none;
+    color: #5138ee;
+    font-weight: 600;
 `

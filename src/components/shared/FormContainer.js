@@ -37,9 +37,7 @@ const FormContainer = ({ children, title, error, message, footer, loginType, for
                 </div>
                 {error && <Alert variant="danger">{error}</Alert>}
                 {message && <Alert variant="success">{message}</Alert>}
-                <FooterWrapper forgotPassword={forgotPassword} g>
-                    @ Filip 2021. All rights reserved.
-                </FooterWrapper>
+                <FooterWrapper forgotPassword={forgotPassword}>@ Filip 2021. All rights reserved.</FooterWrapper>
             </FormWrapper>
         </Wrapper>
     </StyledBody>
@@ -98,9 +96,12 @@ const FormWrapper = styled.div`
     }
     .wrapper-header {
         margin-top: 35px;
+        @media screen and (max-width: 450px) {
+            margin-top: ${(props) => (props.forgotPassword ? '125px' : '75px')};
+        }
     }
     .wrapper-body {
-        margin-top: ${(props) => (props.forgotPassword ? '100px' : '15px')};
+        margin-top: ${(props) => (props.forgotPassword ? '75px' : '15px')};
     }
 `
 
@@ -128,15 +129,9 @@ const LoginWithGoogleButton = styled.button`
 `
 const FooterWrapper = styled.div`
     min-width: 450px;
-    color: gray;
     position: fixed;
-    top: 90vh;
-    @media screen and (max-width: 450px) {
-        position: fixed;
-        top: 90vh;
-        left: 50%;
-        transform: translateX(-30%);
-    }
+    bottom: 10vh;
+    color: grey;
 `
 const LoginWithEmailText = styled.div`
     display: flex;

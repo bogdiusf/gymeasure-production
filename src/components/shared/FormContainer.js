@@ -44,8 +44,10 @@ const FormContainer = ({ children, title, error, message, footer, loginType, for
 export default FormContainer
 
 const StyledBody = styled.div`
+    height: 100vh;
     width: 100%;
     display: flex;
+    overflow: scroll;
 `
 const BackgroundImage = styled.div`
     height: 100vh;

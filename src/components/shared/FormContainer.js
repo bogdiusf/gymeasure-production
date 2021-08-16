@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
 import styled from 'styled-components'
-import welcomePic from '../../images/not-logged-pic.jpg'
+import welcomePic from '../../images/gym-barbell.png'
 import icon from '../../images/Sonya-Swarm-Mayor-Gym.ico'
 import googleIcon from '../../images/icons8-google-48.png'
 
@@ -53,7 +53,7 @@ const BackgroundImage = styled.div`
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: darken;
-    flex: 1;
+    flex: 1.5;
     display: grid;
     justify-content: center;
 

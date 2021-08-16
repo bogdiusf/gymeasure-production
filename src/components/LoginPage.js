@@ -74,7 +74,6 @@ const StyledInput = styled(Form.Control)`
     border-radius: 30px;
     text-align: left;
     padding-left: 30px;
-    min-width: 375px;
 `
 
 const StyledButton = styled.button`

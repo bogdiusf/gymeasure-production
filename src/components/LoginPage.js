@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link, useHistory } from 'react-router-dom'
@@ -40,48 +40,61 @@ export default function Login() {
 
     return (
         <>
-            <FormContainer title="Sign in" error={error} footer={<FormFooter value1="Don't have an account?" value2="Sign up" path="/signup" />}>
+            <FormContainer title="Login" error={error} footer={<FormFooter value1="Not registered yet?" value2="Create an Account" path="/signup" />}>
                 <Form onSubmit={handleLogin}>
                     <Form.Group id="email" className="mt-2">
-                        <Form.Label>Email</Form.Label>
-                        <StyledInput
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            placeholder="Please enter your e-mail"
-                        />
+                        <Form.Label>Email*</Form.Label>
+                        <StyledInput type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="mail@website.com" />
                     </Form.Group>
 
                     <Form.Group id="password" className="mt-2">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label>Password*</Form.Label>
                         <StyledInput
                             type="password"
                             required
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Please enter your password"
+                            placeholder="Min. 6 charactes"
                         />
                     </Form.Group>
+                    <ForgotPassword>
+                        <StyledLink to="/forgot-password">Forgot password?</StyledLink>
+                    </ForgotPassword>
                     <StyledButton type="submit" className="text-center w-100 mt-4" disabled={loading}>
                         Log in
                     </StyledButton>
                 </Form>
-
-                <div className="w-100 text-center mt-3">
-                    <Link to="/forgot-password">Forgot password?</Link>
-                </div>
             </FormContainer>
         </>
     )
 }
 
 const StyledInput = styled(Form.Control)`
-    height: 60px;
+    height: 50px;
     border-radius: 30px;
-    text-align: center;
+    text-align: left;
+    padding-left: 30px;
+    min-width: 375px;
 `
 
-const StyledButton = styled(Button)`
-    background: red;
+const StyledButton = styled.button`
+    background: #5138ee;
+    height: 50px;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    transition: 0.5s all;
+    &:hover {
+        transition: 0.5s all;
+        background: red;
+    }
+`
+const ForgotPassword = styled.div`
+    width: 100%;
+    text-align: right;
+    margin-top: 15px;
+`
+const StyledLink = styled(Link)`
+    text-decoration: none;
 `

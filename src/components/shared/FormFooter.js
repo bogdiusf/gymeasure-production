@@ -1,10 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 const FormFooter = ({ value1, value2, path }) => (
-    <div className="w-100 text-center mt-2">
-        <span style={{ color: 'black' }}>{value1}</span> <Link to={path}>{value2}</Link>
-    </div>
+    <FooterWrapper className="w-100 mt-2">
+        <span style={{ color: 'black' }}>{value1}</span> <StyledLink to={path}>{value2}</StyledLink>
+    </FooterWrapper>
 )
 
 export default FormFooter
+
+const FooterWrapper = styled.div`
+    display: flex;
+    padding: 15px 0;
+    gap: 10px;
+`
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #5138ee;
+    font-weight: 600;
+`

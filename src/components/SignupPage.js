@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button, Alert } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useHistory } from 'react-router-dom'
@@ -37,10 +37,9 @@ export default function Signup() {
             title="Sign up"
             error={error}
             footer={<FormFooter value1="Already have an account?" value2="Log in" path="/login" />}
+            loginType="Sign up"
             forgotPassword={false}
         >
-            <Alert variant="info">After signing up, please check your e-mail inbox for further instructions on how to activate your account!</Alert>
-
             <Form onSubmit={handleSignUp}>
                 <Form.Group id="email" className="mt-2">
                     <Form.Label>Email</Form.Label>

@@ -9,7 +9,7 @@ const FormContainer = ({ children, title, error, message, footer, loginType, for
     <StyledBody>
         <BackgroundImage img={welcomePic} />
         <Wrapper>
-            <FormWrapper>
+            <FormWrapper forgotPassword={forgotPassword}>
                 <img src={icon} alt="" className="power-logo" />
                 <div className="wrapper-header">
                     <h1 className="title">{title}</h1>
@@ -18,10 +18,17 @@ const FormContainer = ({ children, title, error, message, footer, loginType, for
                 {forgotPassword === true ? (
                     ''
                 ) : (
-                    <LoginWithGoogleButton>
-                        <img alt="" src={googleIcon} />
-                        {loginType} with Google
-                    </LoginWithGoogleButton>
+                    <>
+                        <LoginWithGoogleButton>
+                            <img alt="" src={googleIcon} />
+                            {loginType} with Google
+                        </LoginWithGoogleButton>
+                        <LoginWithEmailText>
+                            <span className="left-line"></span>
+                            <span className="login-type">or {loginType} with email</span>
+                            <span className="right-line"></span>
+                        </LoginWithEmailText>
+                    </>
                 )}
 
                 <div className="wrapper-body">
@@ -30,7 +37,9 @@ const FormContainer = ({ children, title, error, message, footer, loginType, for
                 </div>
                 {error && <Alert variant="danger">{error}</Alert>}
                 {message && <Alert variant="success">{message}</Alert>}
-                <FooterWrapper>2020 Filip All rights reserved.</FooterWrapper>
+                <FooterWrapper forgotPassword={forgotPassword} g>
+                    @ Filip 2021. All rights reserved.
+                </FooterWrapper>
             </FormWrapper>
         </Wrapper>
     </StyledBody>
@@ -38,7 +47,6 @@ const FormContainer = ({ children, title, error, message, footer, loginType, for
 export default FormContainer
 
 const StyledBody = styled.div`
-    height: 100vh;
     width: 100%;
     display: flex;
 `
@@ -83,12 +91,16 @@ const FormWrapper = styled.div`
         height: 50px;
         width: 50px;
         margin-top: 50px;
+
+        @media screen and (max-width: 450px) {
+            display: none;
+        }
     }
     .wrapper-header {
         margin-top: 35px;
     }
     .wrapper-body {
-        margin-top: 50px;
+        margin-top: ${(props) => (props.forgotPassword ? '100px' : '15px')};
     }
 `
 
@@ -115,8 +127,31 @@ const LoginWithGoogleButton = styled.button`
     }
 `
 const FooterWrapper = styled.div`
-    min-width: 375px;
+    min-width: 450px;
     color: gray;
     position: fixed;
-    bottom: 50px;
+    top: 90vh;
+    @media screen and (max-width: 450px) {
+        position: fixed;
+        top: 90vh;
+        left: 50%;
+        transform: translateX(-30%);
+    }
+`
+const LoginWithEmailText = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 30px;
+    .left-line,
+    .right-line {
+        width: 30%;
+        border: solid rgba(0, 0, 0, 0.1);
+        border-width: thin;
+    }
+    .login-type {
+        color: rgba(0, 0, 0, 0.3);
+        min-width: fit-content;
+    }
 `

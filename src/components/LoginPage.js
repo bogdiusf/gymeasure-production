@@ -106,7 +106,7 @@ const StyledButton = styled.button`
 const ForgotPassword = styled.div`
     width: 100%;
     text-align: right;
-    margin-top: 15px;
+    margin-top: 5px;
 `
 const StyledLink = styled(Link)`
     text-decoration: none;

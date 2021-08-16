@@ -47,10 +47,10 @@ export default function ForgotPassword() {
                         placeholder="Please enter your e-mail"
                     ></StyledInput>
                 </Form.Group>
-                <BackToLogin className="w-100 text-center mt-3">
+                <BackToLogin>
                     <span>Successfully reseted password?</span> <StyledLink to="/login">Log in</StyledLink>
                 </BackToLogin>
-                <StyledButton type="submit" className="text-center w-100 mt-4" disabled={loading}>
+                <StyledButton type="submit" disabled={loading}>
                     Reset password
                 </StyledButton>
             </StyledForm>
@@ -83,6 +83,7 @@ const StyledButton = styled.button`
     color: white;
     font-weight: 600;
     transition: 0.5s all;
+    margin-top: 25px;
     &:hover {
         transition: 0.5s all;
         background: red;
@@ -92,9 +93,14 @@ const BackToLogin = styled.div`
     width: 100%;
     display: flex;
     gap: 10px;
+    margin-top: 5px;
     justify-content: flex-end;
     > span {
         font-weight: 500;
+    }
+
+    @media screen and (max-width: 450px) {
+        justify-content: center;
     }
 `
 const StyledLink = styled(Link)`

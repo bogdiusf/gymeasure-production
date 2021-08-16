@@ -3,19 +3,23 @@ import { Alert } from 'react-bootstrap'
 import styled from 'styled-components'
 import welcomePic from '../../images/not-logged-pic.jpg'
 import icon from '../../images/Sonya-Swarm-Mayor-Gym.ico'
+import googleIcon from '../../images/icons8-google-48.png'
 
-const FormContainer = ({ children, title, error, message, footer }) => (
+const FormContainer = ({ children, title, error, message, footer, loginType }) => (
     <StyledBody>
         <BackgroundImage img={welcomePic} />
-
         <CredentialsWrapper>
             <Wrapper>
-                <img src={icon} alt="" height="40px" width="40px" />
+                <img src={icon} alt="" className="power-logo" />
                 <div className="wrapper-header">
                     <Title className="title">{title}</Title>
                     <div className="description">Sweat now, enjoy later!</div>
                 </div>
-                <div>
+                <LoginWithGoogleButton>
+                    <img height="30px" width="30px" alt="" src={googleIcon} />
+                    {loginType} with Google
+                </LoginWithGoogleButton>
+                <div className="wrapper-body">
                     {children}
                     {footer}
                 </div>
@@ -31,11 +35,8 @@ export default FormContainer
 const CredentialsWrapper = styled.div`
     background: white;
     height: '100vh';
-    flex: 1;
     min-width: 375px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex: 1;
 `
 const Wrapper = styled.div`
     width: 60%;
@@ -47,6 +48,17 @@ const Wrapper = styled.div`
     flex-direction: column;
     .description {
         color: gray;
+    }
+    .power-logo {
+        height: 50px;
+        width: 50px;
+        margin-top: 50px;
+    }
+    .wrapper-header {
+        margin-top: 50px;
+    }
+    .wrapper-body {
+        margin-top: 50px;
     }
 `
 
@@ -71,5 +83,24 @@ const BackgroundImage = styled.div`
 
     @media screen and (max-width: 600px) {
         display: none;
+    }
+`
+
+const LoginWithGoogleButton = styled.button`
+    background: #ffffff;
+    height: 50px;
+    border-radius: 30px;
+    border: 1px solid lightgrey;
+    color: black;
+    font-weight: 600;
+    transition: 0.5s all;
+    margin-top: 50px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        transition: 0.5s all;
+        background: rgba(0, 0, 0, 0.4);
     }
 `

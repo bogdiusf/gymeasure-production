@@ -40,7 +40,12 @@ export default function Login() {
 
     return (
         <>
-            <FormContainer title="Login" error={error} footer={<FormFooter value1="Not registered yet?" value2="Create an Account" path="/signup" />}>
+            <FormContainer
+                title="Login"
+                error={error}
+                footer={<FormFooter value1="Not registered yet?" value2="Create an Account" path="/signup" />}
+                loginType="Sign in"
+            >
                 <Form onSubmit={handleLogin}>
                     <Form.Group id="email" className="mt-2">
                         <Form.Label>Email*</Form.Label>

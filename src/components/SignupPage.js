@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useHistory } from 'react-router-dom'
 import FormContainer from './shared/FormContainer'
 import FormFooter from './shared/FormFooter'
+import styled from 'styled-components'
 
 export default function Signup() {
     const history = useHistory()
@@ -40,44 +41,72 @@ export default function Signup() {
             loginType="Sign up"
             forgotPassword={false}
         >
-            <Form onSubmit={handleSignUp}>
+            <StyledForm onSubmit={handleSignUp}>
                 <Form.Group id="email" className="mt-2">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
+                    <StyledLabel>Email*</StyledLabel>
+                    <StyledInput
                         type="email"
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Please enter your e-mail"
-                    ></Form.Control>
+                    ></StyledInput>
                 </Form.Group>
 
                 <Form.Group id="password" className="mt-2">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
+                    <StyledLabel>Password*</StyledLabel>
+                    <StyledInput
                         type="password"
                         required
                         value={passwords.mainPassword}
                         onChange={(e) => setPasswords({ mainPassword: e.target.value })}
                         placeholder="Please enter the desired password"
-                    ></Form.Control>
+                    ></StyledInput>
                 </Form.Group>
 
                 <Form.Group id="passwordConfirmation" className="mt-2">
-                    <Form.Label>Password confirmation</Form.Label>
-                    <Form.Control
+                    <StyledLabel>Password confirmation*</StyledLabel>
+                    <StyledInput
                         type="password"
                         required
                         value={passwords.confirmationPassword}
                         onChange={(e) => setPasswords({ ...passwords, confirmationPassword: e.target.value })}
                         placeholder="Please repeat your password"
-                    ></Form.Control>
+                    ></StyledInput>
                 </Form.Group>
 
-                <Button type="submit" className="text-center w-100 mt-4" disabled={loading}>
+                <StyledButton type="submit" className="text-center w-100 mt-4" disabled={loading}>
                     Sign up
-                </Button>
-            </Form>
+                </StyledButton>
+            </StyledForm>
         </FormContainer>
     )
 }
+
+const StyledForm = styled(Form)`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+`
+const StyledLabel = styled(Form.Label)`
+    font-weight: 500;
+`
+const StyledInput = styled(Form.Control)`
+    height: 50px;
+    border-radius: 30px;
+    text-align: left;
+    padding-left: 30px;
+`
+const StyledButton = styled.button`
+    background: #5138ee;
+    height: 50px;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    transition: 0.5s all;
+    &:hover {
+        transition: 0.5s all;
+        background: red;
+    }
+`

@@ -78,18 +78,15 @@ const StyledForm = styled(Form)`
     flex-direction: column;
     gap: 5px;
 `
-
 const StyledLabel = styled(Form.Label)`
     font-weight: 500;
 `
-
 const StyledInput = styled(Form.Control)`
     height: 50px;
     border-radius: 30px;
     text-align: left;
     padding-left: 30px;
 `
-
 const StyledButton = styled.button`
     background: #5138ee;
     height: 50px;

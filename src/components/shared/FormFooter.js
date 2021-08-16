@@ -22,7 +22,6 @@ const FooterWrapper = styled.div`
         justify-content: center;
     }
 `
-
 const StyledLink = styled(Link)`
     text-decoration: none;
     color: #5138ee;

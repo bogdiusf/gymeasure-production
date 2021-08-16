@@ -94,7 +94,7 @@ const FormWrapper = styled.div`
         }
     }
     .wrapper-header {
-        margin-top: 35px;
+        margin-top: 40px;
         @media screen and (max-width: 450px) {
             margin-top: ${(props) => (props.forgotPassword ? '125px' : '50px')};
         }
@@ -103,7 +103,6 @@ const FormWrapper = styled.div`
         margin-top: ${(props) => (props.forgotPassword ? '75px' : '15px')};
     }
 `
-
 const LoginWithGoogleButton = styled.button`
     background: #ffffff;
     height: 50px;

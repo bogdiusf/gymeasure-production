@@ -32,12 +32,11 @@ const FormContainer = ({ children, title, error, message, footer, loginType, for
                 )}
 
                 <div className="wrapper-body">
+                    {error && <Alert variant="danger">{error}</Alert>}
+                    {message && <Alert variant="success">{message}</Alert>}
                     {children}
                     {footer}
                 </div>
-                {error && <Alert variant="danger">{error}</Alert>}
-                {message && <Alert variant="success">{message}</Alert>}
-                <FooterWrapper forgotPassword={forgotPassword}>@ Filip 2021. All rights reserved.</FooterWrapper>
             </FormWrapper>
         </Wrapper>
     </StyledBody>
@@ -97,7 +96,7 @@ const FormWrapper = styled.div`
     .wrapper-header {
         margin-top: 35px;
         @media screen and (max-width: 450px) {
-            margin-top: ${(props) => (props.forgotPassword ? '125px' : '75px')};
+            margin-top: ${(props) => (props.forgotPassword ? '125px' : '50px')};
         }
     }
     .wrapper-body {
@@ -126,12 +125,6 @@ const LoginWithGoogleButton = styled.button`
         transition: 0.5s all;
         background: rgba(0, 0, 0, 0.4);
     }
-`
-const FooterWrapper = styled.div`
-    min-width: 450px;
-    position: fixed;
-    bottom: 10vh;
-    color: grey;
 `
 const LoginWithEmailText = styled.div`
     display: flex;

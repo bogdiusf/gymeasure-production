@@ -45,19 +45,17 @@ export default FormContainer
 
 const StyledBody = styled.div`
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     display: flex;
     overflow: scroll;
 `
 const BackgroundImage = styled.div`
-    height: 100vh;
+    height: 100%;
     background-image: url(${(props) => props.img});
     background-size: cover;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     background-blend-mode: darken;
     flex: 1.5;
-    display: grid;
-    justify-content: center;
 
     @media screen and (max-width: 600px) {
         display: none;
@@ -65,7 +63,7 @@ const BackgroundImage = styled.div`
 `
 const Wrapper = styled.div`
     background: white;
-    height: '100vh';
+    height: 100vh;
     min-width: 375px;
     flex: 1;
     display: flex;
@@ -73,7 +71,7 @@ const Wrapper = styled.div`
     position: relative;
 `
 const FormWrapper = styled.div`
-    width: 60%;
+    width: 70%;
     min-width: 375px;
     padding-left: 30px;
     padding-right: 30px;

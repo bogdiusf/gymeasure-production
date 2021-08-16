@@ -6,6 +6,10 @@
 
 <hr>
 
+## Screenshots
+![Desktop view](./screenshots/Desktop-View-Signup.png)
+![Mobile view](./screenshots/Mobile-View-Signup.png)
+
 ### Current functionalities
 
 -   Login with email/pw (firebase)

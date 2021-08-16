@@ -47,11 +47,12 @@ const StyledBody = styled.div`
     height: 100vh;
     width: 100vw;
     display: flex;
-    overflow: scroll;
+    overflow: hidden;
 `
 const BackgroundImage = styled.div`
-    height: 100%;
     background-image: url(${(props) => props.img});
+    width: 100%;
+    min-height: 100%;
     background-size: cover;
     background-color: rgba(0, 0, 0, 0.2);
     background-blend-mode: darken;

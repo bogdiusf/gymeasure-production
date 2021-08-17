@@ -74,18 +74,18 @@ const PersonalInfoPopup = ({
                 >
                     <InputGroup.Text>First name</InputGroup.Text>
                     <FormControl
-                        value={firstName}
-                        onChange={(e) => setPersonalInfo({ lastName, age, sex , firstName: e.target.value})}
+                        value={firstName ? firstName : ''}
+                        onChange={(e) => setPersonalInfo({ lastName, age, sex, firstName: e.target.value })}
                     />
                     <InputGroup.Text>Last name</InputGroup.Text>
                     <FormControl
-                        value={lastName}
+                        value={lastName ? lastName : ''}
                         onChange={(e) => setPersonalInfo({ firstName, age, sex, lastName: e.target.value })}
                     />
                     <InputGroup.Text>Age</InputGroup.Text>
-                    <FormControl value={age} onChange={(e) => setPersonalInfo({ firstName, lastName, sex, age: e.target.value })} />
+                    <FormControl value={age ? age : ''} onChange={(e) => setPersonalInfo({ firstName, lastName, sex, age: e.target.value })} />
                     <InputGroup.Text>Sex</InputGroup.Text>
-                    <FormControl value={sex} onChange={(e) => setPersonalInfo({ firstName, lastName, age, sex: e.target.value })} />
+                    <FormControl value={sex ? sex : ''} onChange={(e) => setPersonalInfo({ firstName, lastName, age, sex: e.target.value })} />
                 </InputGroup.Prepend>
             </InputGroup>
         </PopupWrapper>

@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import FormContainer from './shared/FormContainer'
 import FormFooter from './shared/FormFooter'
 import styled from 'styled-components'
+import { signInWithGoogle } from '../contexts/AuthContext'
 
 export default function Signup() {
     const history = useHistory()
@@ -33,6 +34,17 @@ export default function Signup() {
         }
     }
 
+    const handleSignInWithGoogle = async () => {
+        try {
+            const user = await signInWithGoogle()
+            if (user.user.emailVerified) {
+                history.push('/')
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     return (
         <FormContainer
             title="Sign up"
@@ -40,6 +52,7 @@ export default function Signup() {
             footer={<FormFooter value1="Already have an account?" value2="Log in" path="/login" />}
             loginType="Sign up"
             forgotPassword={false}
+            handleSignInWithGoogle={handleSignInWithGoogle}
         >
             <StyledForm onSubmit={handleSignUp}>
                 <Form.Group id="email" className="mt-2">
@@ -58,7 +71,6 @@ export default function Signup() {
                     <StyledInput
                         type="password"
                         required
-                        value={passwords.mainPassword}
                         onChange={(e) => setPasswords({ mainPassword: e.target.value })}
                         placeholder="Please enter the desired password"
                     ></StyledInput>
@@ -69,7 +81,6 @@ export default function Signup() {
                     <StyledInput
                         type="password"
                         required
-                        value={passwords.confirmationPassword}
                         onChange={(e) => setPasswords({ ...passwords, confirmationPassword: e.target.value })}
                         placeholder="Please repeat your password"
                     ></StyledInput>

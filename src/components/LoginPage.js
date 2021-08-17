@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom'
 import FormContainer from './shared/FormContainer'
 import FormFooter from './shared/FormFooter'
 import styled from 'styled-components'
+import { signInWithGoogle } from '../contexts/AuthContext'
 
 export default function Login() {
     const history = useHistory()
@@ -38,6 +39,19 @@ export default function Login() {
         }
     }
 
+    const handleSignInWithGoogle = async () => {
+        try {
+            const user = await signInWithGoogle()
+            if (user.user.emailVerified) {
+                history.push('/')
+                console.log(user.user)
+            }
+        } catch (e) {
+            console.log(e)
+        }
+        return true
+    }
+
     return (
         <FormContainer
             title="Login"
@@ -45,6 +59,7 @@ export default function Login() {
             footer={<FormFooter value1="Not registered yet?" value2="Create an Account" path="/signup" />}
             loginType="Sign in"
             forgotPassword={false}
+            handleSignInWithGoogle={handleSignInWithGoogle}
         >
             <StyledForm onSubmit={handleLogin}>
                 <Form.Group id="email" className="mt-2">

@@ -47,5 +47,5 @@ export const updateUserInformation = async (userId, personalInfo) => {
         .doc(userId)
         .collection('personal-info')
         .doc('Informatii personale')
-        .update({ ...personalInfo })
+        .set({ firstName: personalInfo?.firstName, lastName: personalInfo?.lastName, age: personalInfo?.age, sex: personalInfo?.sex })
 }

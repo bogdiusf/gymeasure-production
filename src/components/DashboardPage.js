@@ -19,6 +19,7 @@ export default function Dashboard() {
     const [deleteDocId, setDeleteDocId] = useState(null)
     const [error, setError] = useState('')
     const [personalInfo, setPersonalInfo] = useState({
+        isEmpty: true,
         firstName: '',
         lastName: '',
         age: '',

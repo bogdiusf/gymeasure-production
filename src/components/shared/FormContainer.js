@@ -5,7 +5,7 @@ import welcomePic from '../../images/gym-barbell.png'
 import icon from '../../images/Sonya-Swarm-Mayor-Gym.ico'
 import googleIcon from '../../images/icons8-google-48.png'
 
-const FormContainer = ({ children, title, error, message, footer, loginType, forgotPassword }) => (
+const FormContainer = ({ children, title, error, message, footer, loginType, forgotPassword, handleSignInWithGoogle }) => (
     <StyledBody>
         <BackgroundImage img={welcomePic} />
         <Wrapper>
@@ -19,7 +19,7 @@ const FormContainer = ({ children, title, error, message, footer, loginType, for
                     ''
                 ) : (
                     <>
-                        <LoginWithGoogleButton>
+                        <LoginWithGoogleButton onClick={handleSignInWithGoogle}>
                             <img alt="" src={googleIcon} />
                             {loginType} with Google
                         </LoginWithGoogleButton>

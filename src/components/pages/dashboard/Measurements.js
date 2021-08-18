@@ -51,7 +51,7 @@ export default function Measurements({
             </div>
             <div className="measurementsWrapper">
                 {measurements.length === 0 ? (
-                    <h1 style={{ color: 'white', marginTop: '50px', textAlign: 'center' }}>No measurements</h1>
+                    <h1 style={{ marginTop: '50px', textAlign: 'center' }}>No measurements</h1>
                 ) : (
                     measurements.map((item) => (
                         <Measurement

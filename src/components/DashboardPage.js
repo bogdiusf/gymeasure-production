@@ -157,8 +157,8 @@ export default function Dashboard() {
         <React.Fragment>
             <DisplayNavbar
                 setEditMeasurement={setEditMeasurement}
-                firstName={personalInfo.firstName}
-                lastName={personalInfo.lastName}
+                firstName={personalInfo?.firstName}
+                lastName={personalInfo?.lastName}
                 currentUser={currentUser}
                 setShowPersInfoPopup={setShowPersInfoPopup}
                 setShowAddMeasurementsPopup={setShowAddMeasurementsPopup}

@@ -44,7 +44,6 @@ export default function Login() {
             const user = await signInWithGoogle()
             if (user.user.emailVerified) {
                 history.push('/')
-                console.log(user.user)
             }
         } catch (e) {
             console.log(e)

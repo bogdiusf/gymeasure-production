@@ -7,6 +7,7 @@ import ConfirmationPopup from '../../shared/ConfirmationPopup'
 import styled from 'styled-components'
 import EditLogo from '../../../images/Pencil-icon.png'
 import AddLogo from '../../../images/Iconsmind-Outline-Add.ico'
+import LogoutLogo from '../../../images/log-out.svg'
 
 export default function DisplayNavbar({ setEditMeasurement, currentUser, setShowAddMeasurementsPopup, setShowPersInfoPopup, firstName, lastName }) {
     const { logout } = useAuth()
@@ -58,7 +59,10 @@ export default function DisplayNavbar({ setEditMeasurement, currentUser, setShow
                         Edit personal info
                     </StyledButton>
 
-                    <StyledButton onClick={() => setShowPopup(true)}>Log out</StyledButton>
+                    <StyledButton onClick={() => setShowPopup(true)}>
+                        <img src={LogoutLogo} alt="logout-logo" height="20px" width="20px" />
+                        Log out
+                    </StyledButton>
                 </StyledNavbarCollapse>
             </StyledNavbar>
 

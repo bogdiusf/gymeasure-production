@@ -29,7 +29,8 @@ export default function DisplayNavbar({ setEditMeasurement, currentUser, setShow
                     </div>
                 </StyledNavbarBrand>
 
-                <Navbar.Toggle
+                <StyledNavbarToggle
+                    isnavbarcollapsed={`${isNavbarCollapsed}`}
                     aria-controls="basic-navbar-nav"
                     onClick={() => {
                         if (isNavbarCollapsed === false) {
@@ -92,11 +93,12 @@ const StyledNavbar = styled(Navbar)`
 `
 const StyledNavbarBrand = styled(Navbar.Brand)`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 30px;
     margin-left: 50px;
-    > img {
+
+    img {
         height: 60px;
         width: 60px;
         border-radius: 50%;
@@ -113,7 +115,20 @@ const StyledNavbarBrand = styled(Navbar.Brand)`
 
     @media screen and (max-width: 1000px) {
         margin-left: 0;
+        img {
+            height: 40px;
+            width: 40px;
+        }
+        .user-name {
+            font-size: 15px;
+        }
+        .user-email {
+            font-size: 10px;
+        }
     }
+`
+const StyledNavbarToggle = styled(Navbar.Toggle)`
+    filter: ${(props) => (props.isnavbarcollapsed === 'true' ? 'brightness(0) invert(1);' : 'brightness(1) invert(0);')};
 `
 const StyledNavbarCollapse = styled(Navbar.Collapse)`
     display: flex;
@@ -122,12 +137,14 @@ const StyledNavbarCollapse = styled(Navbar.Collapse)`
     font-size: 1.2vw;
     justify-content: flex-end;
     gap: 40px;
+
     transition: all 0.5s;
 
     @media screen and (max-width: 1000px) {
+        gap: 0px;
         flex-direction: column;
         justify-content: center;
-        height: ${(props) => (props.isnavbarcollapsed === 'true' ? '250px' : '')};
+        height: ${(props) => (props.isnavbarcollapsed === 'true' ? '200px;' : '')};
         font-size: 4vw;
     }
 `

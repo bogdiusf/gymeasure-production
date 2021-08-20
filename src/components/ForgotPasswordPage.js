@@ -85,8 +85,9 @@ const StyledButton = styled.button`
     transition: 0.5s all;
     margin-top: 25px;
     &:hover {
+        color: white;
         transition: 0.5s all;
-        background: red;
+        background: rgba(0, 0, 0, 1);
     }
 `
 const BackToLogin = styled.div`

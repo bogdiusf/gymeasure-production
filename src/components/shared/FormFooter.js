@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { StyledLink } from './styled-components/StyledComponents'
 import styled from 'styled-components'
 
 const FormFooter = ({ value1, value2, path }) => (
@@ -21,9 +21,4 @@ const FooterWrapper = styled.div`
     @media screen and (max-width: 450px) {
         justify-content: center;
     }
-`
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: #5138ee;
-    font-weight: 600;
 `

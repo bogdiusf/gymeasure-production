@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import FormContainer from './shared/FormContainer'
 import FormFooter from './shared/FormFooter'
-import styled from 'styled-components'
 import { signInWithGoogle } from '../contexts/AuthContext'
+import { StyledButton, StyledLink, StyledLabel, StyledForm, StyledInput } from './shared/styled-components/StyledComponents'
+import styled from 'styled-components'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function Login() {
     const history = useHistory()
@@ -87,40 +88,8 @@ export default function Login() {
     )
 }
 
-const StyledForm = styled(Form)`
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-`
-const StyledLabel = styled(Form.Label)`
-    font-weight: 500;
-`
-const StyledInput = styled(Form.Control)`
-    height: 50px;
-    border-radius: 30px;
-    text-align: left;
-    padding-left: 30px;
-`
-const StyledButton = styled.button`
-    background: #5138ee;
-    height: 50px;
-    border-radius: 30px;
-    border: none;
-    color: white;
-    font-weight: 600;
-    transition: 0.5s all;
-    &:hover {
-        transition: 0.5s all;
-        background: red;
-    }
-`
 const ForgotPassword = styled.div`
     width: 100%;
     text-align: right;
     margin-top: 5px;
-`
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: #5138ee;
-    font-weight: 600;
 `

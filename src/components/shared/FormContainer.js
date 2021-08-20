@@ -44,7 +44,6 @@ const FormContainer = ({ children, title, error, message, footer, loginType, for
 export default FormContainer
 
 const StyledBody = styled.div`
-    height: 100vh;
     width: 100vw;
     display: flex;
     overflow: hidden;
@@ -69,10 +68,10 @@ const Wrapper = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    position: relative;
+    overflow: scroll;
 `
 const FormWrapper = styled.div`
-    width: 70%;
+    width: 80%;
     min-width: 375px;
     padding-left: 30px;
     padding-right: 30px;
@@ -122,8 +121,9 @@ const LoginWithGoogleButton = styled.button`
         width: 30px;
     }
     &:hover {
+        color: white;
         transition: 0.5s all;
-        background: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 1);
     }
 `
 const LoginWithEmailText = styled.div`

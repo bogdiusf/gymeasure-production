@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { useHistory } from 'react-router-dom'
 import FormContainer from './shared/FormContainer'
 import FormFooter from './shared/FormFooter'
-import styled from 'styled-components'
 import { signInWithGoogle } from '../contexts/AuthContext'
+import { StyledButton, StyledLabel, StyledForm, StyledInput } from './shared/styled-components/StyledComponents'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function Signup() {
     const history = useHistory()
     const { signup } = useAuth()
     const [email, setEmail] = useState('')
+    const [message, setMessage] = useState('')
     const [passwords, setPasswords] = useState({
         mainPassword: '',
         confirmationPassword: ''
@@ -27,7 +28,7 @@ export default function Signup() {
         try {
             setLoading(true)
             await signup(email, passwords.mainPassword)
-            history.push('/login')
+            setMessage('An email has been sent to your inbox. Please check it for further information on how to activate your account!')
         } catch (e) {
             setLoading(false)
             setError(`Failed to create an account! ${e}`)
@@ -49,6 +50,7 @@ export default function Signup() {
         <FormContainer
             title="Sign up"
             error={error}
+            message={message}
             footer={<FormFooter value1="Already have an account?" value2="Log in" path="/login" />}
             loginType="Sign up"
             forgotPassword={false}
@@ -93,31 +95,3 @@ export default function Signup() {
         </FormContainer>
     )
 }
-
-const StyledForm = styled(Form)`
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-`
-const StyledLabel = styled(Form.Label)`
-    font-weight: 500;
-`
-const StyledInput = styled(Form.Control)`
-    height: 50px;
-    border-radius: 30px;
-    text-align: left;
-    padding-left: 30px;
-`
-const StyledButton = styled.button`
-    background: #5138ee;
-    height: 50px;
-    border-radius: 30px;
-    border: none;
-    color: white;
-    font-weight: 600;
-    transition: 0.5s all;
-    &:hover {
-        transition: 0.5s all;
-        background: red;
-    }
-`

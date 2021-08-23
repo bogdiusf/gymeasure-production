@@ -92,24 +92,24 @@ const FormWrapper = styled.div`
     .power-logo {
         height: 50px;
         width: 50px;
-        }
     }
     .wrapper-header {
-        margin-top: 40px;   
+        margin-top: 40px;
     }
     .wrapper-body {
         margin-top: ${(props) => (props.forgotPassword ? '75px' : '15px')};
     }
     @media screen and (max-width: 450px) {
         width: 100%;
-        .power-logo{
+        .power-logo {
             display: none;
         }
-        .wrapper-header{
+        .wrapper-header {
             margin-top: ${(props) => (props.forgotPassword ? '125px' : '50px')};
         }
     }
 `
+
 const LoginWithGoogleButton = styled.button`
     background: #ffffff;
     height: 50px;

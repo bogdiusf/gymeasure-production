@@ -10,6 +10,8 @@ export const StyledButton = styled.button`
     color: white;
     font-weight: 600;
     transition: 0.5s all;
+    text-align: center;
+    margin-top: 20px;
     &:hover {
         transition: 0.5s all;
         background: rgba(0, 0, 0, 1);

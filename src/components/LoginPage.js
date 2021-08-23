@@ -80,7 +80,7 @@ export default function Login() {
                 <ForgotPassword>
                     <StyledLink to="/forgot-password">Forgot password?</StyledLink>
                 </ForgotPassword>
-                <StyledButton type="submit" className="text-center w-100 mt-4" disabled={loading}>
+                <StyledButton type="submit" disabled={loading}>
                     Log in
                 </StyledButton>
             </StyledForm>

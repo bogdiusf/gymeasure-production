@@ -88,7 +88,7 @@ export default function Signup() {
                     ></StyledInput>
                 </Form.Group>
 
-                <StyledButton type="submit" className="text-center w-100 mt-4" disabled={loading}>
+                <StyledButton type="submit" disabled={loading}>
                     Sign up
                 </StyledButton>
             </StyledForm>

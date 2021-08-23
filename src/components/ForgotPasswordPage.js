@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Link } from 'react-router-dom'
 import FormContainer from './shared/FormContainer'
 import FormFooter from './shared/FormFooter'
+import { StyledButton, StyledLabel, StyledLink, StyledForm, StyledInput } from './shared/styled-components/StyledComponents'
 import styled from 'styled-components'
 
 export default function ForgotPassword() {
@@ -58,38 +58,6 @@ export default function ForgotPassword() {
     )
 }
 
-const StyledForm = styled(Form)`
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-`
-
-const StyledLabel = styled(Form.Label)`
-    font-weight: 500;
-`
-
-const StyledInput = styled(Form.Control)`
-    height: 50px;
-    border-radius: 30px;
-    text-align: left;
-    padding-left: 30px;
-`
-
-const StyledButton = styled.button`
-    background: #5138ee;
-    height: 50px;
-    border-radius: 30px;
-    border: none;
-    color: white;
-    font-weight: 600;
-    transition: 0.5s all;
-    margin-top: 25px;
-    &:hover {
-        color: white;
-        transition: 0.5s all;
-        background: rgba(0, 0, 0, 1);
-    }
-`
 const BackToLogin = styled.div`
     width: 100%;
     display: flex;
@@ -103,9 +71,4 @@ const BackToLogin = styled.div`
     @media screen and (max-width: 450px) {
         justify-content: center;
     }
-`
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: #5138ee;
-    font-weight: 600;
 `

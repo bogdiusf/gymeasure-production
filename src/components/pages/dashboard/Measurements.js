@@ -5,6 +5,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import { useAuth } from '../../../contexts/AuthContext'
 import { db } from '../../../services/firebase'
 import Measurement from './Measurement'
+import styled from 'styled-components'
 
 export default function Measurements({
     setError,
@@ -17,7 +18,6 @@ export default function Measurements({
 }) {
     const { currentUser } = useAuth()
 
-    // function that deletes measurements from firestore
     const deleteMeasurement = async (id) => {
         try {
             await db.collection('users').doc(currentUser.uid).collection('measurements').doc(id).delete()
@@ -29,14 +29,13 @@ export default function Measurements({
     }
 
     return (
-        <React.Fragment>
+        <StyledBody className="body">
             <div
                 style={{
                     color: 'white',
                     textAlign: 'center',
                     width: '80%',
                     margin: 'auto',
-                    marginTop: '30px',
                     padding: '0'
                 }}
             >
@@ -65,6 +64,11 @@ export default function Measurements({
                     ))
                 )}
             </div>
-        </React.Fragment>
+        </StyledBody>
     )
 }
+
+const StyledBody = styled.div`
+    width: 100%;
+    background: black;
+`

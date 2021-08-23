@@ -68,7 +68,12 @@ const Wrapper = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     overflow: scroll;
+    @media screen and (max-width: 450px) {
+        justify-content: flex-start;
+    }
 `
 const FormWrapper = styled.div`
     width: 80%;
@@ -87,20 +92,22 @@ const FormWrapper = styled.div`
     .power-logo {
         height: 50px;
         width: 50px;
-        margin-top: 50px;
-
-        @media screen and (max-width: 450px) {
-            display: none;
         }
     }
     .wrapper-header {
-        margin-top: 40px;
-        @media screen and (max-width: 450px) {
-            margin-top: ${(props) => (props.forgotPassword ? '125px' : '50px')};
-        }
+        margin-top: 40px;   
     }
     .wrapper-body {
         margin-top: ${(props) => (props.forgotPassword ? '75px' : '15px')};
+    }
+    @media screen and (max-width: 450px) {
+        width: 100%;
+        .power-logo{
+            display: none;
+        }
+        .wrapper-header{
+            margin-top: ${(props) => (props.forgotPassword ? '125px' : '50px')};
+        }
     }
 `
 const LoginWithGoogleButton = styled.button`

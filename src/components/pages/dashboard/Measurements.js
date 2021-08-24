@@ -35,7 +35,7 @@ export default function Measurements({
                 </Header>
 
                 {measurements.length === 0 ? (
-                    <h1>No measurements</h1>
+                    <h2>No measurements</h2>
                 ) : (
                     measurements.map((item) => (
                         <Measurement
@@ -55,15 +55,18 @@ export default function Measurements({
 
 const StyledBody = styled.div`
     width: 100%;
-    min-height: 100vh;
+    min-height: 90vh;
     background: linear-gradient(#5138ee, #24bdf0);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 50px 0;
+    position: relative;
+    @media screen and (max-width: 450px) {
+        padding: 0 0 50px 0;
+    }
 `
-
 const MeasurementsWrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -76,19 +79,31 @@ const MeasurementsWrapper = styled.div`
         margin-top: 50px;
         text-align: center;
     }
+    @media screen and (max-width: 450px) {
+        width: 100vw;
+        border-radius: 0 0 10px 10px;
+    }
 `
 const Header = styled.div`
     color: white;
     display: flex;
     justify-content: space-between;
     color: black;
-    width: 59vw;
+    width: 100%;
+    min-width: 60vw;
+    gap: 5px;
+    @media screen and (max-width: 450px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 15px;
+    }
 `
-
 const StyledInput = styled.input`
     padding: 15px;
     height: 40px;
     width: 20%;
+    min-width: fit-content;
     font-weight: 500;
     border: 1px solid lightgrey;
     display: flex;

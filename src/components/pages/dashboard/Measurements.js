@@ -61,12 +61,12 @@ const StyledBody = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 50px 0;
 `
 
 const MeasurementsWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
     background: white;
     padding: 40px;
     border-radius: 10px;

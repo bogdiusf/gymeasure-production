@@ -1,7 +1,5 @@
 import React from 'react'
 import '../../../style.css'
-import FormControl from 'react-bootstrap/FormControl'
-import InputGroup from 'react-bootstrap/InputGroup'
 import { useAuth } from '../../../contexts/AuthContext'
 import { db } from '../../../services/firebase'
 import Measurement from './Measurement'
@@ -30,27 +28,14 @@ export default function Measurements({
 
     return (
         <StyledBody className="body">
-            <div
-                style={{
-                    color: 'white',
-                    textAlign: 'center',
-                    width: '80%',
-                    margin: 'auto',
-                    padding: '0'
-                }}
-            >
-                <InputGroup className="mb-3 searchInputGroup">
-                    <InputGroup.Text>Search by date</InputGroup.Text>
-                    <FormControl
-                        placeholder="DD/MM/YYYY"
-                        style={{ textAlign: 'center', fontWeight: '500' }}
-                        onChange={(e) => filterMeasurements(e.target.value)}
-                    />
-                </InputGroup>
-            </div>
-            <div className="measurementsWrapper">
+            <MeasurementsWrapper>
+                <Header>
+                    <h2>Measurements</h2>
+                    <StyledInput placeholder=" &#9781;  Filter measurements" onChange={(e) => filterMeasurements(e.target.value)} />
+                </Header>
+
                 {measurements.length === 0 ? (
-                    <h1 style={{ marginTop: '50px', textAlign: 'center' }}>No measurements</h1>
+                    <h1>No measurements</h1>
                 ) : (
                     measurements.map((item) => (
                         <Measurement
@@ -63,12 +48,52 @@ export default function Measurements({
                         />
                     ))
                 )}
-            </div>
+            </MeasurementsWrapper>
         </StyledBody>
     )
 }
 
 const StyledBody = styled.div`
     width: 100%;
-    background: black;
+    min-height: 100vh;
+    background: linear-gradient(#5138ee, #24bdf0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+const MeasurementsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    h1 {
+        margin-top: 50px;
+        text-align: center;
+    }
+`
+const Header = styled.div`
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    width: 59vw;
+`
+
+const StyledInput = styled.input`
+    padding: 15px;
+    height: 40px;
+    width: 20%;
+    font-weight: 500;
+    border: 1px solid lightgrey;
+    display: flex;
+    border-radius: 30px;
+    :focus {
+        outline: none;
+    }
 `

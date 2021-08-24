@@ -14,8 +14,8 @@ const Measurement = ({ measurement, setMeasurementForEditing, deleteMeasurement,
 
     return (
         <div className="measurementDataWrapper" key={measurement.document_id}>
-            <h4>Measured on: {measurement.measured_on_day} </h4>
-            <h4>Measured at: {measurement.measured_at_time} </h4>
+            {/* <h4>Measured on: {measurement.measured_on_day} </h4>
+            <h4>Measured at: {measurement.measured_at_time} </h4> */}
             <InputGroup className="mb-3">
                 <div
                     style={{
@@ -25,9 +25,9 @@ const Measurement = ({ measurement, setMeasurementForEditing, deleteMeasurement,
                         marginTop: '10px'
                     }}
                 >
-                    <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }}>Body part</InputGroup.Text>
+                    {/* <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }}>Body part</InputGroup.Text>
                     <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }}>Value</InputGroup.Text>
-                    <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }}>Unit</InputGroup.Text>
+                    <InputGroup.Text style={{ fontWeight: '700', justifyContent: 'center' }}>Unit</InputGroup.Text> */}
                 </div>
                 <InputGroup.Prepend
                     style={{

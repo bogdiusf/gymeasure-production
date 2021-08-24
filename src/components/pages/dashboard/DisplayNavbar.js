@@ -88,7 +88,6 @@ const StyledNavbar = styled(Navbar)`
     display: flex;
     flex-direction: row;
     padding: 10px;
-    border-bottom: 1px solid lightgrey;
     background: #5138ee;
 `
 const StyledNavbarBrand = styled(Navbar.Brand)`

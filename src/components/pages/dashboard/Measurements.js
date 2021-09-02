@@ -4,6 +4,10 @@ import { useAuth } from '../../../contexts/AuthContext'
 import { db } from '../../../services/firebase'
 import Measurement from './Measurement'
 import styled from 'styled-components'
+import 'date-fns'
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns'
+import Grid from '@material-ui/core/Grid'
 
 export default function Measurements({
     setError,
@@ -26,12 +30,33 @@ export default function Measurements({
         }
     }
 
+    const [selectedDate, setSelectedDate] = React.useState(new Date())
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date)
+    }
+
     return (
         <StyledBody className="body">
             <MeasurementsWrapper>
                 <Header>
                     <h2>Measurements</h2>
-                    <StyledInput placeholder=" &#9781;  Filter measurements" onChange={(e) => filterMeasurements(e.target.value)} />
+                    {/* <StyledInput placeholder=" &#9781;  Filter measurements" onChange={(e) => filterMeasurements(e.target.value)} /> */}
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <StyledGrid container>
+                            <KeyboardDatePicker
+                                margin="normal"
+                                id="date-picker-dialog"
+                                label="Filter measurements"
+                                format="MM/dd/yyyy"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date'
+                                }}
+                            />
+                        </StyledGrid>
+                    </MuiPickersUtilsProvider>
                 </Header>
 
                 {measurements.length === 0 ? (
@@ -68,6 +93,8 @@ const StyledBody = styled.div`
     }
 `
 const MeasurementsWrapper = styled.div`
+    width: 60vw;
+    min-width: 360px;
     display: flex;
     flex-direction: column;
     background: white;
@@ -80,35 +107,31 @@ const MeasurementsWrapper = styled.div`
         text-align: center;
     }
     @media screen and (max-width: 450px) {
-        width: 100vw;
-        border-radius: 0 0 10px 10px;
+        width: 90vw;
+        margin-top: 50px;
+        border-radius: 10px;
     }
 `
 const Header = styled.div`
     color: white;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: black;
     width: 100%;
-    min-width: 60vw;
     gap: 5px;
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 920px) {
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding-bottom: 15px;
     }
 `
-const StyledInput = styled.input`
-    padding: 15px;
-    height: 40px;
-    width: 20%;
-    min-width: fit-content;
-    font-weight: 500;
-    border: 1px solid lightgrey;
+
+const StyledGrid = styled(Grid)`
     display: flex;
-    border-radius: 30px;
-    :focus {
-        outline: none;
+    justify-content: flex-end;
+    @media screen and (max-width: 920px) {
+        justify-content: center;
     }
 `

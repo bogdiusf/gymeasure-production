@@ -164,6 +164,16 @@ export default function Dashboard() {
                 setShowAddMeasurementsPopup={setShowAddMeasurementsPopup}
             />
 
+            <Measurements
+                setError={setError}
+                setConfirmationModal={setShowPopup}
+                measurements={measurements}
+                filterMeasurements={filterMeasurements}
+                setMeasurementForEditing={setMeasurementForEditing}
+                setDeleteDocId={setDeleteDocId}
+                deleteDocId={deleteDocId}
+            />
+
             <MeasurementsPopup
                 editMeasurement={editMeasurement}
                 resetMeasurementForEditing={resetMeasurementForEditing}
@@ -173,16 +183,6 @@ export default function Dashboard() {
                 addMeasurements={addMeasurements}
                 measurementsSizes={measurementsSizes}
                 setMeasurementsSizes={setMeasurementsSizes}
-            />
-
-            <Measurements
-                setError={setError}
-                setConfirmationModal={setShowPopup}
-                measurements={measurements}
-                filterMeasurements={filterMeasurements}
-                setMeasurementForEditing={setMeasurementForEditing}
-                setDeleteDocId={setDeleteDocId}
-                deleteDocId={deleteDocId}
             />
 
             <ConfirmationPopup isUserFeedbackRequired={false} title={error} showPopup={showPopup} onYes={() => setShowPopup(false)} />

@@ -15,9 +15,7 @@ const FormContainer = ({ children, title, error, message, footer, loginType, for
                     <h1 className="title">{title}</h1>
                     <div className="description">Sweat now, enjoy later!</div>
                 </div>
-                {forgotPassword === true ? (
-                    ''
-                ) : (
+                {forgotPassword !== true && (
                     <>
                         <LoginWithGoogleButton onClick={handleSignInWithGoogle}>
                             <img alt="" src={googleIcon} />

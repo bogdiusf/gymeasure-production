@@ -20,8 +20,8 @@ export function AuthProvider({ children }) {
 
     const signup = (email, password) => {
         async function handleSignup() {
-            const result = await auth.createUserWithEmailAndPassword(email, password)
             try {
+                const result = await auth.createUserWithEmailAndPassword(email, password)
                 result.user.sendEmailVerification()
                 auth.signOut()
             } catch (e) {

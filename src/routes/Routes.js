@@ -8,16 +8,16 @@ import PrivateRoute from './PrivateRoute'
 import ForgotPassword from '../components/ForgotPasswordPage'
 
 const Routes = () => (
-    <Router>
-        <AuthProvider>
+    <AuthProvider>
+        <Router>
             <Switch>
                 <PrivateRoute exact path="/" component={Dashboard}></PrivateRoute>
                 <Route path="/signup" component={Signup}></Route>
                 <Route path="/login" component={Login}></Route>
                 <Route path="/forgot-password" component={ForgotPassword}></Route>
             </Switch>
-        </AuthProvider>
-    </Router>
+        </Router>
+    </AuthProvider>
 )
 
 export default Routes

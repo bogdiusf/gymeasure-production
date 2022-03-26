@@ -48,7 +48,7 @@ export default function Measurements({
                                 margin="normal"
                                 id="date-picker-dialog"
                                 label="Filter measurements"
-                                format="MM/dd/yyyy"
+                                format="dd/MM/yyyy"
                                 value={selectedDate}
                                 onChange={handleDateChange}
                                 KeyboardButtonProps={{

@@ -14,6 +14,12 @@ const Measurement = ({ measurement, setMeasurementForEditing, deleteMeasurement,
 
     return (
         <div className="measurementDataWrapper" key={measurement.document_id}>
+            <div>
+                <strong>
+                    <label>Date:</label>
+                    <span> {measurement.measured_on_day}</span>
+                </strong>
+            </div>
             <InputGroup className="mb-3">
                 <div
                     style={{

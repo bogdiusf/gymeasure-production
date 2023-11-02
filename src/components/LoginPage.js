@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import { useAuth } from '../contexts/AuthContext'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import FormContainer from './shared/FormContainer'
 import FormFooter from './shared/FormFooter'
+import { signInWithGoogle } from '../contexts/AuthContext'
+import { StyledButton, StyledLink, StyledLabel, StyledForm, StyledInput } from './shared/styled-components/StyledComponents'
+import styled from 'styled-components'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function Login() {
     const history = useHistory()
@@ -37,42 +40,56 @@ export default function Login() {
         }
     }
 
+    const handleSignInWithGoogle = async () => {
+        try {
+            const user = await signInWithGoogle()
+            if (user.user.emailVerified) {
+                history.push('/')
+            }
+        } catch (e) {
+            console.log(e)
+        }
+        return true
+    }
+
     return (
         <FormContainer
-            title="Sign in"
+            title="Login"
             error={error}
-            footer={<FormFooter value1="Don't have an account?" value2="Sign up" path="/signup" />}
+            footer={<FormFooter value1="Not registered yet?" value2="Create an Account" path="/signup" />}
+            loginType="Sign in"
+            forgotPassword={false}
+            handleSignInWithGoogle={handleSignInWithGoogle}
         >
-            <Form onSubmit={handleLogin}>
+            <StyledForm onSubmit={handleLogin}>
                 <Form.Group id="email" className="mt-2">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
+                    <StyledLabel>Email*</StyledLabel>
+                    <StyledInput
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        placeholder="Please enter your e-mail"
+                        placeholder="Please type your email"
                     />
                 </Form.Group>
 
                 <Form.Group id="password" className="mt-2">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Please enter your password"
-                    ></Form.Control>
+                    <StyledLabel>Password*</StyledLabel>
+                    <StyledInput type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 </Form.Group>
-                <Button type="submit" className="text-center w-100 mt-4" disabled={loading}>
+                <ForgotPassword>
+                    <StyledLink to="/forgot-password">Forgot password?</StyledLink>
+                </ForgotPassword>
+                <StyledButton type="submit" disabled={loading}>
                     Log in
-                </Button>
-            </Form>
-
-            <div className="w-100 text-center mt-3">
-                <Link to="/forgot-password">Forgot password?</Link>
-            </div>
+                </StyledButton>
+            </StyledForm>
         </FormContainer>
     )
 }
+
+const ForgotPassword = styled.div`
+    width: 100%;
+    text-align: right;
+    margin-top: 5px;
+`

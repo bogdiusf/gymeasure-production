@@ -1,10 +1,13 @@
 import React from 'react'
 import '../../../style.css'
-import FormControl from 'react-bootstrap/FormControl'
-import InputGroup from 'react-bootstrap/InputGroup'
 import { useAuth } from '../../../contexts/AuthContext'
 import { db } from '../../../services/firebase'
 import Measurement from './Measurement'
+import styled from 'styled-components'
+import 'date-fns'
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns'
+import Grid from '@material-ui/core/Grid'
 
 export default function Measurements({
     setError,
@@ -13,23 +16,13 @@ export default function Measurements({
     measurements,
     setMeasurementForEditing,
     setDeleteDocId,
-    setShowDeleteMeasurementConfirmationModal,
-    showDeleteMeasurementConfirmationModal,
-    deleteDocId,
-    closeDeleteMeasurementConfirmation
+    deleteDocId
 }) {
     const { currentUser } = useAuth()
 
-    // function that deletes measurements from firestore
     const deleteMeasurement = async (id) => {
-        await db
-            .collection('users')
-            .doc(currentUser.uid)
-            .collection('measurements')
-            .doc(id)
-            .delete()
         try {
-            setShowDeleteMeasurementConfirmationModal(true)
+            await db.collection('users').doc(currentUser.uid).collection('measurements').doc(id).delete()
             setError('Your measurement has been successfully deleted!')
             setConfirmationModal(true)
         } catch (e) {
@@ -37,52 +30,108 @@ export default function Measurements({
         }
     }
 
+    const [selectedDate, setSelectedDate] = React.useState(new Date())
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date)
+    }
+
     return (
-        <React.Fragment>
-            <div
-                style={{
-                    color: 'white',
-                    textAlign: 'center',
-                    width: '80%',
-                    margin: 'auto',
-                    marginTop: '30px',
-                    padding: '0'
-                }}
-            >
-                <InputGroup className="mb-3 searchInputGroup">
-                    <InputGroup.Text>Search by date</InputGroup.Text>
-                    <FormControl
-                        placeholder="DD/MM/YYYY"
-                        style={{ textAlign: 'center', fontWeight: '500' }}
-                        onChange={(e) => filterMeasurements(e.target.value)}
-                    />
-                </InputGroup>
-            </div>
-            <div className="measurementsWrapper">
+        <StyledBody className="body">
+            <MeasurementsWrapper>
+                <Header>
+                    <h2>Measurements</h2>
+                    {/* <StyledInput placeholder=" &#9781;  Filter measurements" onChange={(e) => filterMeasurements(e.target.value)} /> */}
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <StyledGrid container>
+                            <KeyboardDatePicker
+                                margin="normal"
+                                id="date-picker-dialog"
+                                label="Filter measurements"
+                                format="dd/MM/yyyy"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date'
+                                }}
+                            />
+                        </StyledGrid>
+                    </MuiPickersUtilsProvider>
+                </Header>
+
                 {measurements.length === 0 ? (
-                    <h1 style={{ color: 'white', marginTop: '50px', textAlign: 'center' }}>
-                        No measurements
-                    </h1>
+                    <h2>No measurements</h2>
                 ) : (
                     measurements.map((item) => (
                         <Measurement
-                            key={item.docuemnt_id}
+                            key={item.document_id}
                             measurement={item}
                             deleteMeasurement={deleteMeasurement}
                             setMeasurementForEditing={setMeasurementForEditing}
                             setDeleteDocId={setDeleteDocId}
-                            setShowDeleteMeasurementConfirmationModal={
-                                setShowDeleteMeasurementConfirmationModal
-                            }
-                            showDeleteMeasurementConfirmationModal={
-                                showDeleteMeasurementConfirmationModal
-                            }
                             deleteDocId={deleteDocId}
-                            closeDeleteMeasurementConfirmation={closeDeleteMeasurementConfirmation}
                         />
                     ))
                 )}
-            </div>
-        </React.Fragment>
+            </MeasurementsWrapper>
+        </StyledBody>
     )
 }
+
+const StyledBody = styled.div`
+    width: 100%;
+    min-height: 90vh;
+    background: linear-gradient(#5138ee, #24bdf0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    position: relative;
+    @media screen and (max-width: 450px) {
+        padding: 0 0 50px 0;
+    }
+`
+const MeasurementsWrapper = styled.div`
+    width: 60vw;
+    min-width: 360px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    h1 {
+        margin-top: 50px;
+        text-align: center;
+    }
+    @media screen and (max-width: 450px) {
+        width: 90vw;
+        margin-top: 50px;
+        border-radius: 10px;
+    }
+`
+const Header = styled.div`
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    width: 100%;
+    gap: 5px;
+    @media screen and (max-width: 920px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 15px;
+    }
+`
+
+const StyledGrid = styled(Grid)`
+    display: flex;
+    justify-content: flex-end;
+    @media screen and (max-width: 920px) {
+        justify-content: center;
+    }
+`

@@ -1,11 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { auth } from '../services/firebase'
-
+import firebase from 'firebase/app'
+import 'firebase/auth'
 // creating an auth context
 const AuthContext = React.createContext()
 
 export function useAuth() {
     return useContext(AuthContext)
+}
+
+const googleProvider = new firebase.auth.GoogleAuthProvider()
+export const signInWithGoogle = () => {
+    return auth.signInWithPopup(googleProvider)
 }
 
 export function AuthProvider({ children }) {
@@ -14,8 +20,8 @@ export function AuthProvider({ children }) {
 
     const signup = (email, password) => {
         async function handleSignup() {
-            const result = await auth.createUserWithEmailAndPassword(email, password)
             try {
+                const result = await auth.createUserWithEmailAndPassword(email, password)
                 result.user.sendEmailVerification()
                 auth.signOut()
             } catch (e) {
